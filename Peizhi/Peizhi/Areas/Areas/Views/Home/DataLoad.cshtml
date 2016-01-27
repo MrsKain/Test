@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+    @{
+        Html.RenderAction("Head", "Home", new { id = 4});
+         }
+  <!-- 头部 END -->
+
+  <!-- 下载列表 -->
+  <article class="exam-lists">
+     @{
+        Html.RenderAction("LeftMenu", "Home");
+         }
+    <ol id="tab-ol-1">
+      <!-- 教师资格 -->
+      <li>
+        @{
+        DataTable dt = ViewBag.table as DataTable;
+        foreach(DataRow dr in dt.Rows)
+        {
+        <dl class="download-list" >
+          <dt>@dr["title"].ToString()</dt>
+          <dd class="btn-download">
+          <input type="button" value="下载" onclick="DataLoad('@dr["dataurl"].ToString()','@dr["title"].ToString()')">
+            
+          </dd>
+        </dl>
+        }
+        }
+      </li>
+   
+    </ol>
+  </article>
+  <!-- 下载列表 END -->
+
+</body>
+</html>
+<script type="text/javascript">
+    function search(id)
+    {
+    
+        location.href = "/Areas/Home/DataLoad/"+id;
+    }
+    $(document).ready(function () {
+       
+        $("#tab-ul-1").children().each(function () {
+           
+            if ('@ViewBag.id' == $(this).attr("name"))
+            {
+                $(this).addClass("active");
+            }
+
+        })
+    });
+    function DataLoad(id, title) {
+
+        location.href = "/HomeServer/FileDownload/" + id + "/" + title;
+    }
+</script>

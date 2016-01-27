@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<div class="index_header">
+    <div class="header">
+      <a class="logo" href="#">
+        <!-- logo尺寸 410*90 -->
+        <img src="images/index_logo.png" alt="揽光科技" />
+      </a>
+      <!-- 登录之后样式 -->
+      <div class="user_name">
+        亲爱的会员，您好！欢迎光临易考网
+        <a class="names" href="个人中心">Niudaye</a>
+        <a class="btn_quit" href="#">[退出]</a>
+      </div>
+      <div class="search">
+        <input type="text" />
+        <a href="#"></a>
+      </div>
+      <div class="login_box">
+        <a class="active" href="登录.html">登录</a>
+        <a href="注册.html">注册</a>
+      </div>
+    </div>
+  </div>
+<div class="index_top_nav">
+    <ul id="headnav">
+      <li><a href="/Home/index">网站首页</a></li>
+      <li><a href="/Video/Videolist">微课中心</a></li>
+      <li><a href="考试中心.html">考试中心</a></li>
+      <li><a href="/Home/Dataload">资料下载</a></li>
+      <li><a href="/Home/Newslist">新闻资讯</a></li>
+      <li><a href="/Home/Authentication">认证中心</a></li>
+      <li class="active"><a href="/Home/About">关于我们</a></li>
+    </ul>
+  </div>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#headnav").children().removeClass("active");
+        $("#headnav li:nth-child(@ViewBag.ids)").addClass("active");
+    });
+
+</script>

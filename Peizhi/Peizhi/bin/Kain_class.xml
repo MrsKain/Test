@@ -1,0 +1,1152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kain_class</name>
+    </assembly>
+    <members>
+        <member name="M:Kain_class.Chart.ChartZS.BarAction(System.Data.DataTable,System.String[],System.String,System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            构建柱状图所需json集合
+            dt：数据集合
+            datavd:数据字段
+            chartdiv：chartdiv id没有“#”
+            xcolumn:绑定x轴字段
+            xlaberotation：x轴坐标文字旋转角度
+            blcolumn:是否开启鼠标滑过显示分组柱状图一组信息。此参数用于分组数据
+            legendfx：显示legend。legendfx表示方向 null 默认top
+            xcolord：背景线颜色 null 默认:#DADADA
+            column3DJson：json字符串 三d特效属性{"bl":false "depth3D": 10, "angle": 30 };
+            ycolumnJson: json字符串  y轴属性，有position:方向默认值left,title：y轴标题:默认值ytitle
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumn"></param>
+            <param name="xlaberotation"></param>
+            <param name="blcolumn"></param>
+            <param name="legendfx"></param>
+            <param name="xcolord"></param>
+            <param name="column3DJson"></param>
+            <param name="ycolumnJson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Chart.ChartZS.BarAction(System.Data.DataTable,System.String[],System.String,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            构建柱状图所需json集合
+            dt：数据集合
+            datavd:数据字段
+            chartdiv：chartdiv id没有“#”
+            xcolumn:绑定x轴字段
+            xlaberotation：x轴坐标文字旋转角度
+            blcolumn:是否开启鼠标滑过显示分组柱状图一组信息。此参数用于分组数据
+            column3DJson：json字符串 三d特效属性{"bl":false "depth3D": 10, "angle": 30 };,也可以简写{bl:true}
+            ycolumnJson: json字符串  y轴属性，有position:方向默认值left,title：y轴标题:默认值ytitle
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="graphcolumn"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumn"></param>
+            <param name="xlaberotation"></param>
+            <param name="column3DJson"></param>
+            <param name="ycolumnJson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Chart.ChartZS.PieAction(System.Data.DataTable,System.String[],System.String,System.String,System.String)">
+            <summary>
+            <summary>
+              构建饼图所需json集合
+            dt数据集合
+            xcolumnJson:title, valueField key已经固定，值为字段
+            datavd：字段集合
+            chartdiv：chartdiv id没有“#”
+            column3DJson：3d
+            </summary>
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumnJson"></param>
+            <param name="column3DJson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Chart.ChartZS.PieAction(System.Data.DataTable,System.String[],System.String,System.String)">
+            <summary>
+            构建饼图所需json集合
+            dt数据集合
+            xcolumnJson:title, valueField key已经固定，值为字段
+            datavd：字段集合
+            chartdiv：chartdiv id没有“#”
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumnJson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Chart.ChartZS.LineAction(System.Data.DataTable,System.String[],System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            构建折线图
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="graphcolumn"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumn"></param>
+            <param name="ycolumnJson"></param>
+            <param name="categoryAxisfillColor"></param>
+             <param name="xlaberotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Chart.ChartZS.LineAction(System.Data.DataTable,System.String[],System.String,System.String,System.String,System.String)">
+            <summary>
+            构建折线图
+            </summary>
+            <param name="dt"></param>
+            <param name="datavd"></param>
+            <param name="graphcolumn"></param>
+            <param name="chartdiv"></param>
+            <param name="xcolumn"></param>
+            <param name="ycolumnJson"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.DataFunction.DataFunction">
+            <summary>
+            数据库操作类
+            </summary>
+        </member>
+        <member name="T:Kain_class.Interfaces.INterfaceData">
+            <summary>
+            数据库接口
+            </summary>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionData(System.String)">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameter">SqlParameter 参数</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter[],System.String)">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="sqlname"></param>
+            <param name="parameters"></param>
+            <param name="key"></param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.Mgfunctioninfor(System.String)">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.Mgfunctioninfor(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameter">SqlParameter 参数</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.Mgfunctioninfor(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionDataSet(System.String)">
+            <summary>
+            执行sql返回 信息数据集合，及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回 信息数据集合，及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameter">SqlParameter 参数</param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回 信息数据集合，及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter[],System.String)">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="sqlname"></param>
+            <param name="parameters"></param>
+            <param name="key"></param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctioninforScalar(System.String)">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeInforScalar</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctioninforScalar(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameter">SqlParameter 参数</param>
+            <returns>MessasgeInforRowCol</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.MgfunctioninforScalar(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="sqlParameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeInforRowCol</returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.ToMessasgeInfor(Kain_class.Messageinfor.MessasgeData)">
+            <summary>
+            MessasgeData转换为MessasgeInfor
+            </summary>
+            <param name="messasgeData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Interfaces.INterfaceData.ToMessasgeInfor(Kain_class.Messageinfor.MessasgeDataSet)">
+            <summary>
+            MessasgeDataSet转换为MessasgeInfor
+            </summary>
+            <param name="messasgeDataSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.#ctor(System.String)">
+            <summary>
+            数据处理构造函数1
+            </summary>
+            <param name="sqlcon"></param>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.#ctor">
+            <summary>
+            数据处理构造函数2
+            ConfigurationManager.ConnectionStrings["connectstring"]
+            </summary>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.Cmdclose">
+            <summary>
+            函数扫尾
+            </summary>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionData(System.String)">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameter">SqlParameter 参数</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeData</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionData(System.String,System.Data.SqlClient.SqlParameter[],System.String)">
+            <summary>
+            执行存储过程 执行sql返回 信息数据datatable 及基本信息
+            </summary>
+            <param name="sqlname"></param>
+            <param name="parameters"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.Mgfunctioninfor(System.String)">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.Mgfunctioninfor(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameter">SqlParameter 参数</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.Mgfunctioninfor(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeInfor</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionDataSet(System.String)">
+            <summary>
+            执行sql返回 信息数据集合及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回 信息数据集合及基本信息
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameter">SqlParameter 参数</param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回 信息数据集合
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctionDataSet(System.String,System.Data.SqlClient.SqlParameter[],System.String)">
+            <summary>
+            执行存储过程 执行sql返回 信息数据集合
+            </summary>
+            <param name="sqlname"></param>
+            <param name="parameters"></param>
+            <param name="key"></param>
+            <returns>MessasgeDataSet</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctioninforScalar(System.String)">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns>MessasgeInforScalar</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctioninforScalar(System.String,System.Data.SqlClient.SqlParameter)">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameter">SqlParameter 参数</param>
+            <returns>MessasgeInforScalar</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MgfunctioninforScalar(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行sql返回基本信息且返回第一行第一列
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="parameters">SqlParameter[] 参数数组</param>
+            <returns>MessasgeInforScalar</returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.MessageinforData(System.String,System.Data.DataTable)">
+            <summary>
+            执行更新结果集合
+            </summary>
+            <param name="sqlname"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.DatatbleUpdate(System.Data.DataTable,System.String)">
+            <summary>
+            批量更新数据。抛弃
+            </summary>
+            <param name="dt"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.DataUpdate(System.Data.DataTable,System.String,System.String,System.Collections.Generic.List{Kain_class.DataSqlParameter.DtSqlParameter})">
+            <summary>
+            更新表。（遗弃！）
+            </summary>
+            <param name="dt"></param>
+            <param name="tableName"></param>
+            <param name="sql"></param>
+            <param name="dbList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.DataUpdate(System.Data.DataTable,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            更新表
+            </summary>
+            <param name="dt"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.ToMessasgeInfor(Kain_class.Messageinfor.MessasgeData)">
+            <summary>
+            将MessasgeData转换为MessasgeInfor
+            </summary>
+            <param name="mgData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DataFunction.DataFunction.ToMessasgeInfor(Kain_class.Messageinfor.MessasgeDataSet)">
+            <summary>
+            将MessasgeData转换为MessasgeInfor
+            </summary>
+            <param name="mgDataSet"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.DataSqlParameter.DtSqlParameter">
+            <summary>
+            DtSqlParameter Key 类
+            </summary>
+        </member>
+        <member name="P:Kain_class.DataSqlParameter.DtSqlParameter.Parameter">
+            <summary>
+            没有参数值的对象
+            </summary>
+        </member>
+        <member name="P:Kain_class.DataSqlParameter.DtSqlParameter.Key">
+            <summary>
+            key
+            </summary>
+        </member>
+        <member name="T:Kain_class.DatatoTable.DttoTable">
+            <summary>
+            dt解释table html值
+            </summary>
+        </member>
+        <member name="M:Kain_class.DatatoTable.DttoTable.DTjson_datable(System.Data.DataTable,System.Boolean)">
+            <summary>
+            转换为htmltable html值
+            </summary>
+            <param name="dt"></param>
+            <param name="bl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DatatoTable.DttoTable.DTjson_datable(System.Data.DataTable,System.Int32)">
+            <summary>
+            htmltable html值
+            introw：一行显示多少项
+            </summary>
+            <param name="dt"></param>
+            <param name="inrow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.DatatoTable.DttoTable.DTjson_datable(System.Data.DataTable,System.Int32,System.String,System.String)">
+            <summary>
+            htmltable html值
+            introw：一行显示多少项
+            bgcolora：交叉行颜色1
+            bgcolorb 交叉行颜色2
+            </summary>
+            <param name="dt"></param>
+            <param name="inrow"></param>
+            <param name="bgcolora"></param>
+            <param name="bgcolorb"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.ExceDC.Excel_DC">
+            <summary>
+            数据导出类
+            </summary>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ExlAction(System.Collections.Hashtable,System.String,System.String)">
+            <summary>
+            数据导出html方式
+            </summary>
+            <param name="hx"></param>
+            <param name="strValue"></param>
+            <param name="namevalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ExlActionMvc(System.Collections.Hashtable,System.String,System.String)">
+            <summary>
+            导出mvc方法
+            </summary>
+            <param name="hx"></param>
+            <param name="strValue"></param>
+            <param name="namevalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ExlActionSave(System.Collections.Hashtable,System.String,System.String,System.String)">
+            <summary>
+            excl导出，html 方式
+            </summary>
+            <param name="hx"></param>
+            <param name="strValue"></param>
+            <param name="namevalue"></param>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ZipFile(System.String,System.String,System.String)">
+            <summary>
+            功能：压缩文件（暂时只压缩文件夹下一级目录中的文件，文件夹及其子级被忽略）
+            </summary>
+            <param name="dirPath">被压缩的文件夹夹路径</param>
+            <param name="zipFilePath">生成压缩文件的路径，为空则默认与被压缩文件夹同一级目录，名称为：文件夹名+.zip</param>
+            <param name="err">出错信息</param>
+            <returns>是否压缩成功</returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.DownloadFile(System.String,System.String)">
+            <summary>
+            文件下载
+            </summary>
+            <param name="fullName">文件完整路径</param>
+            <param name="sendFileName">发送到客户端显示的文件名</param>
+            <returns>下载成功返回true,否则返回false</returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.Zip(System.String,System.String[])">
+            
+             压缩文件,默认目录为当前目录,文件名为当前目录名,压缩级别为6
+            
+             要压缩的文件或文件夹
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ExlActionMvc(System.String,Kain_class.ExcelHead.Exlhead)">
+             <summary>
+            一个工作簿
+             </summary>
+             <param name="namevalue"></param>
+             <param name="exl"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Kain_class.ExceDC.Excel_DC.ExlActionMvc(System.String,System.Collections.Generic.List{Kain_class.ExcelHead.Exlhead},NPOI.HSSF.UserModel.HSSFWorkbook)">
+            <summary>
+            多个工作簿
+            </summary>
+            <param name="namevalue"></param>
+            <param name="listexl"></param>
+             <param name="hssworks"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.ExceDR.Excel_DR">
+            <summary>
+            excel导入
+            </summary>
+        </member>
+        <member name="M:Kain_class.ExceDR.Excel_DR.#ctor(System.String,System.String,System.String)">
+            <summary>
+            数据导入构造函数1
+            </summary>
+            <param name="exlname"></param>
+            <param name="sheetName"></param>
+            <param name="sqlname"></param>
+        </member>
+        <member name="M:Kain_class.ExceDR.Excel_DR.#ctor(System.String)">
+            <summary>
+            数据导入构造函数2
+            </summary>
+            <param name="exlname"></param>
+        </member>
+        <member name="M:Kain_class.ExceDR.Excel_DR.#ctor(System.String,System.String)">
+            <summary>
+            数据导入构造函数3
+            </summary>
+            <param name="exlname"></param>
+            <param name="sqlname"></param>
+        </member>
+        <member name="M:Kain_class.ExceDR.Excel_DR.GetData">
+            <summary>
+            返回数据data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.ExcelHead.Exlhead">
+            <summary>
+            一个工作簿情况下
+            </summary>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.#ctor(System.Data.DataTable,System.Int32,System.String)">
+            <summary>
+            构造函数1
+            </summary>
+            <param name="dt"></param>
+            <param name="rowdataindex"></param>
+            <param name="titlev"></param>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.#ctor(System.Data.DataTable,System.Int32,System.String,System.String)">
+            <summary>
+            工作簿名称
+            </summary>
+            <param name="dt"></param>
+            <param name="rowdataindex"></param>
+            <param name="titlev"></param>
+            <param name="workname"></param>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.#ctor(System.Data.DataTable,System.Int32,System.String,System.String,NPOI.HSSF.UserModel.HSSFWorkbook)">
+            <summary>
+            构造函数3
+            </summary>
+            <param name="dt"></param>
+            <param name="rowdataindex"></param>
+            <param name="titlev"></param>
+            <param name="workname"></param>
+            <param name="hswork"></param>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.#ctor(System.Data.DataTable,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            构造函数4
+            </summary>
+            <param name="dt"></param>
+            <param name="rowdataindex"></param>
+            <param name="titlev"></param>
+            <param name="_excelWorkname"></param>
+            <param name="Author"></param>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.#ctor(System.Data.DataTable,System.Int32,System.String,System.String,System.String,NPOI.HSSF.UserModel.HSSFWorkbook)">
+            <summary>
+            数据导出基本信息类构造1：导出正真excel格式。
+            </summary>
+            <param name="dt"></param>
+            <param name="rowdataindex"></param>
+            <param name="titlev"></param>
+            <param name="_excelWorkname"></param>
+            <param name="Author"></param>
+            <param name="hswork"></param>
+        </member>
+        <member name="F:Kain_class.ExcelHead.Exlhead.hssfworkbook">
+            <summary>
+            创建excel工程
+            </summary>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.GetXLColour(System.Drawing.Color)">
+            <summary>
+            返回对应颜色
+            </summary>
+            <param name="SystemColour"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.CellStyleInit">
+            <summary>
+            样式初始化（懒人动作）
+            </summary>
+        </member>
+        <member name="M:Kain_class.ExcelHead.Exlhead.CreaTitle(System.Int32)">
+            <summary>
+            创建标题
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.ExcleWork">
+            <summary>
+            设置excel工作簿名称
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.ExcelTitle">
+            <summary>
+            设置excel标题，默认空
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.DocumentSummaryInfor">
+            <summary>
+            作者、标题、标记、备注、主题等信息
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.SummaryInfor">
+            <summary>
+             文档摘要信息
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.DataDt">
+            <summary>
+            导出的table
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.Hworkbook">
+            <summary>
+            获取 HSSFWorkbook
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.ISheet">
+            <summary>
+            获取工作簿
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.Rowsinx">
+            <summary>
+            获取创建数据开始行
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.CellTitleStyle">
+            <summary>
+            获取或设置表题样式属性
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.CellthendStyle">
+            <summary>
+            获取或设置表头样式属性
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.CelldataStyle">
+            <summary>
+            获取或设置数据样式属性
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.ITitileFont">
+            <summary>
+            设置标题字体格式
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.IthendFont">
+            <summary>
+            设置标头字体格式
+            </summary>
+        </member>
+        <member name="P:Kain_class.ExcelHead.Exlhead.IdataFont">
+            <summary>
+            设置数据字体格式
+            </summary>
+        </member>
+        <member name="T:Kain_class.HtmlSubstring.SubstringFunction">
+             <summary>
+            字符串操作类
+             </summary>
+        </member>
+        <member name="M:Kain_class.HtmlSubstring.SubstringFunction.ByteSubString(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            字符串截取（汉子为2字符）
+            </summary>
+            <param name="strInput">字符串</param>
+            <param name="startIndex">开始位置</param>
+            <param name="length">截取长度，达不到长度去最大</param>
+            <param name="bl">是否删除html标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.HtmlSubstring.SubstringFunction.DataZDataActionDataTable(System.Data.DataTable,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            数据转换，去除特殊字符
+            bkg：空格 bfxg：/ bbfh：%   bdh：， tab:\t
+            </summary>
+            <param name="dt"></param>
+            <param name="startint"></param>
+            <param name="endint"></param>
+            <param name="bkg"></param>
+            <param name="bfxg"></param>
+            <param name="bbfh"></param>
+            <param name="bdh"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.HtmlSubstring.SubstringFunction.IsDatarowNull(System.Data.DataRow)">
+            <summary>
+            判断改行是否为空,或者为“”。
+            </summary>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.Json.Jsonzs">
+             <summary>
+            Jsonzs 返回前台json格式转换
+             作者：阚承接
+             时间： 2013年9月11日14:34:40
+             </summary>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.ToJson``1(``0)">
+            <summary>
+            换回json字符串
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(System.Data.DataTable)">
+            <summary>
+            datatable转换json
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(System.Data.DataTable,System.Char)">
+            <summary>
+            datatable转换json
+            key：表示为双引号还是单引号，'或"
+            </summary>
+            <param name="dt"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(System.Data.DataTable,System.Char,System.String)">
+            <summary>
+            datatable转换json
+            key：表示为双引号还是单引号，'或"
+            TabT 表示返回的json 头 默认值total
+            </summary>
+            <param name="dt"></param>
+            <param name="key"></param>
+            <param name="TabT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(Kain_class.Messageinfor.MessasgeData,System.Char,System.String)">
+            <summary>
+            datatable转换json 用与分页
+            key：表示为双引号还是单引号，'或"
+            TabT 表示返回的json 头 默认值total
+            </summary>
+            <param name="messasgeData"></param>
+            <param name="key"></param>
+            <param name="TabT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(System.Data.DataTable,System.Int32,System.Char,System.String)">
+            <summary>
+            datatable转换json 用与分页
+            key：表示为双引号还是单引号，'或"
+            TabT 表示返回的json 头 默认值total
+            </summary>
+            <param name="dt"></param>
+            <param name="rowscount"></param>
+            <param name="key"></param>
+            <param name="TabT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.ToDataTable(System.String)">
+            <summary>
+            json转Datatable
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(Kain_class.Messageinfor.MessasgeDataSet,System.Char,System.String)">
+            <summary>
+            datatable 转换Json带合计。 使用与easyUI 的DAatGrid，第一个table为值，第二个table为合计一行
+            key：表示为双引号还是单引号，'或"
+            TabT 表示返回的json 头 默认值total
+            </summary>
+            <param name="mgDataSet"></param>
+            <param name="key"></param>
+            <param name="TabT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Json.Jsonzs.DataTableToJson(System.Data.DataTable,System.Data.DataTable,System.Char,System.String)">
+            <summary>
+            datatable 转换Json带合计。 使用与easyUI 的DAatGrid，第一个table为值，第二个table为合计一行
+            key：表示为双引号还是单引号，'或"
+            TabT 表示返回的json 头 默认值total
+            </summary>
+            <param name="dt1"></param>
+            <param name="dt2"></param>
+            <param name="key"></param>
+            <param name="TabT"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.Messageinfor.MessasgeInfor">
+             <summary>
+            信息消息类
+             </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInfor.Mgtitle">
+            <summary>
+            信息标题
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInfor.Mgbool">
+            <summary>
+            信息成功与否
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInfor.Mgcontent">
+            <summary>
+            信息内容
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInfor.Mgdatacount">
+            <summary>
+            返回影响行
+            </summary>
+        </member>
+        <member name="T:Kain_class.Messageinfor.MessasgeInforScalar">
+            <summary>
+            信息数据第一行第一列类
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInforScalar.Mgtitle">
+            <summary>
+            信息标题
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInforScalar.Mgbool">
+            <summary>
+            信息成功与否
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInforScalar.Mgcontent">
+            <summary>
+            信息内容
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeInforScalar.Mgdatascalar">
+            <summary>
+            返回第一行第一列值
+            </summary>
+        </member>
+        <member name="T:Kain_class.Messageinfor.MessasgeData">
+            <summary>
+            信息数据datable消息类
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeData.Mgtitle">
+            <summary>
+            信息标题
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeData.Mgbool">
+            <summary>
+            信息成功与否
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeData.Mgcontent">
+            <summary>
+            信息内容
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeData.Mgdatacount">
+            <summary>
+            数据行数
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeData.Mgdata">
+            <summary>
+            数据表
+            </summary>
+        </member>
+        <member name="T:Kain_class.Messageinfor.MessasgeDataSet">
+            <summary>
+            信息数据集合消息类
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeDataSet.Mgtitle">
+            <summary>
+            信息标题
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeDataSet.Mgbool">
+            <summary>
+            信息成功与否
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeDataSet.Mgcontent">
+            <summary>
+            信息内容
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeDataSet.Mgdatacount">
+            <summary>
+            数据datatable个数
+            </summary>
+        </member>
+        <member name="P:Kain_class.Messageinfor.MessasgeDataSet.MgdataSet">
+            <summary>
+            数据集合
+            </summary>
+        </member>
+        <member name="T:Kain_class.Models.ServerDataFun">
+            <summary>
+            数据操作类构造
+            </summary>
+        </member>
+        <member name="T:Kain_class.Pass.Passwd">
+             <summary>
+            加密解密类
+             </summary>
+        </member>
+        <member name="M:Kain_class.Pass.Passwd.SetPass(System.String)">
+            <summary>
+            加密程序
+            </summary>
+            <param name="str">加密源串</param>
+            <returns>返回生成的加密字符串</returns>
+        </member>
+        <member name="M:Kain_class.Pass.Passwd.GetPass(System.String)">
+            <summary>
+            解密程序
+            </summary>
+            <param name="str">解密原串</param>
+            <returns>返回生成的解密字符串</returns>
+        </member>
+        <member name="T:Kain_class.Reflex.Funobje">
+            <summary>
+            反射函数所需实体类
+            </summary>
+        </member>
+        <member name="T:Kain_class.Reflex.Reflex">
+            <summary>
+            反射类
+            </summary>
+        </member>
+        <member name="M:Kain_class.Reflex.Reflex.#ctor">
+            <summary>
+            反射类构造
+            </summary>
+        </member>
+        <member name="M:Kain_class.Reflex.Reflex.Funtype(System.String)">
+            <summary>
+            返回类型函数
+            </summary>
+            <param name="typevalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Reflex.Reflex.FunFz(System.Type,System.String)">
+            <summary>
+            type 为当前实体类本体，
+            funName 为实体类本体函数
+            如:funName();  
+             funName(1,2);
+            </summary>
+            <param name="type"></param>
+            <param name="funName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Reflex.Reflex.FunFz(System.String)">
+            <summary>
+            参数为字符串公式：如：1+2
+            1>2?3:4 
+            可嵌套
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Kain_class.Reflex.Reflex.FunFznew``1(System.Type,System.String)">
+            <summary>
+            返回自定义类型 的值
+             funName 如：fun(bool bl,string str);
+            可以多个参数
+            type 当前类类型
+            </summary>
+            <param name="type"></param>
+            <param name="funName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.SqlPager.SqlPage">
+            <summary>
+             分类类
+            </summary>
+        </member>
+        <member name="M:Kain_class.SqlPager.SqlPage.SqlPageAction(Kain_class.DataFunction.DataFunction,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            分页静态类 
+            存储过程：DataPage_poc
+            </summary>
+            <param name="DataFun"></param>
+            <param name="sql"></param>
+            <param name="order"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Kain_class.Upload.DownloadingFileInfo">
+            <summary>
+            上传文件信息类
+            </summary>
+        </member>
+        <member name="M:Kain_class.Upload.DownloadingFileInfo.#ctor(System.String,System.String,System.Int64,System.String)">
+            <summary>
+            文件打开上传构造函数1
+            </summary>
+            <param name="fileName"></param>
+            <param name="upfileName"></param>
+            <param name="fileSize"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="P:Kain_class.Upload.DownloadingFileInfo.Speed">
+            <summary>
+            获取上传进度时间
+            </summary>
+        </member>
+        <member name="P:Kain_class.Upload.DownloadingFileInfo.FileName">
+            <summary>
+            上传的文件名
+            </summary>
+        </member>
+        <member name="P:Kain_class.Upload.DownloadingFileInfo.UpfileName">
+            <summary>
+            上传生成文件名
+            </summary>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.UI.Page,System.String,System.String,System.Boolean)">
+            <summary>
+            构造函数2，AppSettings[appstringvalue] 为保存文件路径。
+            filesbl：是否为每个上传文件在保存路径里创建新的文件夹保存。
+            </summary>
+            <param name="page"></param>
+            <param name="guid"></param>
+            <param name="filePath"></param>
+            <param name="filesbl"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            构造函数1，AppSettings[appstringvalue] 为保存文件路径。
+             filesbl：默认不创建。（ 是否为每个上传文件在保存路径里创建新的文件夹保存）
+            </summary>
+            <param name="page"></param>
+            <param name="guid"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.UI.Page,System.String)">
+            <summary>
+            构造函数0默认保存文件路径：AppSettings[upload_file_pash];
+            filesbl：默认不创建。（ 是否为每个上传文件在保存路径里创建新的文件夹保存）
+            </summary>
+            <param name="page"></param>
+            <param name="guid"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.HttpRequestBase,System.Web.HttpContextBase,System.String,System.String,System.Boolean)">
+            <summary>
+            构造函数2，AppSettings[appstringvalue] 为保存文件路径。
+            filesbl：是否为每个上传文件在保存路径里创建新的文件夹保存
+            </summary>
+            <param name="httpRequest"></param>
+            <param name="context"></param>
+            <param name="guid"></param>
+            <param name="filePath"></param>
+            <param name="filesbl"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.HttpRequestBase,System.Web.HttpContextBase,System.String,System.String)">
+            <summary>
+            构造函数1，AppSettings[appstringvalue] 为保存文件路径。
+             filesbl：默认不创建。（ 是否为每个上传文件在保存路径里创建新的文件夹保存）
+            </summary>
+            <param name="httpRequest"></param>
+            <param name="context"></param>
+            <param name="guid"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.#ctor(System.Web.HttpRequestBase,System.Web.HttpContextBase,System.String)">
+            <summary>
+            构造函数0默认保存文件路径：AppSettings[upload_file_pash];
+            filesbl：默认不创建。（ 是否为每个上传文件在保存路径里创建新的文件夹保存）
+            </summary>
+            <param name="httpRequest"></param>
+            <param name="context"></param>
+            <param name="guid"></param>
+        </member>
+        <member name="M:Kain_class.Upload.UploadAs.Upload">
+            <summary>
+            返回文件所在服务器全路径名。
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

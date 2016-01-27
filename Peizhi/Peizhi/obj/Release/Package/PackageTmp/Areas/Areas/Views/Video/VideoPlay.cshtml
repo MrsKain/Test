@@ -1,0 +1,192 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+   <style>
+  /****弹窗****/
+  #bg{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 9;
+    display:none;
+    width:100%;
+    height:100%;
+    background:#000000; 
+    opacity:0.5; 
+    filter:Alpha(opacity=50);
+  }
+  #pop-ups {
+    position:absolute;
+    left:5%;
+    top:25%;
+    z-index: 10;
+    display:none;
+    width:90%;
+    text-align: center;
+    background:#ffffff;
+    border-radius: 3px;
+  }
+  #pop-ups .dial-phone {
+    padding: 5%;
+    line-height:1.5;
+  }
+  #pop-ups .dial-phone div {
+    width: 100%;
+    line-height: 24px;
+    font-size: 1.1em;
+  }
+  #pop-ups .dial-phone div.div1 {
+    font-size: 1.2em;
+    color: #b5151d;
+  }
+  #pop-ups .dial-phone div.div2 {
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+  }
+  #pop-ups .button-group {
+    overflow: hidden;
+    border-top: 1px solid #ddd;
+  }
+  #pop-ups .button-group a {
+    display:block;
+    float: left;
+    width:50%;
+    height: 30px;
+    line-height:30px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;   
+  }
+  #pop-ups .button-group a.sure {border-right: 1px solid #ddd;}
+  #pop-ups .cancle {color: #cc1421;}
+  /*弹窗 END*/
+</style>
+</head>
+<body>
+
+  <!-- 头部 -->
+   @{
+        Html.RenderAction("Head", "Home", new { id = 2});
+         }
+  <!-- 头部 END -->
+
+  <!-- 微课视频 -->
+  <article class="course-videos">
+    <div class="collect-title">
+      <div class="title">高一化学准备课</div>
+      <!-- 已收藏类名变为collected -->
+   
+    </div>
+    <video width="100%" id="video1" src="/Content/videos/mov_bbb.mp4" poster="/Content/images/index_pic_1.png" controls="controls"></video>
+    <!-- 课程列表 -->
+    <section class="videos-list">
+      <div class="videos-title">课程列表</div>
+      <ul class="videos-ul">
+             @{
+                  DataTable dt = ViewBag.table as DataTable;
+                  foreach(DataRow dr in dt.Rows)
+                  {
+                
+                  if(ViewBag.id==dr["id"].ToString())
+                  {
+                    <li class="active" onclick="addvieo(this,'@dr["videourl"].ToString()')"><a href="###">@dr["title"].ToString()</a></li>
+                  }
+                  else
+                  {
+                    <li onclick="addvieo(this,'@dr["videourl"].ToString()')"><a href="###">@dr["title"].ToString()</a></li>
+                  }
+                  }
+                  }
+      </ul>
+    </section>
+    <!-- 本节课程简介 -->
+    <section class="videos-list">
+      <div class="videos-title">本节课程简介</div>
+      @ViewBag.brief
+      
+     
+    </section>
+    <!-- 课程要点 -->
+    <section class="videos-list">
+      <div class="videos-title">课程要点</div>
+     @ViewBag.introduce
+  
+    </section>
+  </article>
+  <!-- 微课视频 END -->
+   <div id="bg"></div>
+  <div id="pop-ups">
+    <div class="c666 dial-phone">
+      <div class="div1">注意事项</div>
+      <div class="div2">1. 联系客服，通过支付宝、微信、银行卡等转账到指定账户</div>
+      <div class="div2">2. 客服确认收到款项后，即报名成功</div>
+    </div>
+    <div class="button-group">
+      <a class="sure cancle" href="#" onclick="pupclose()">确定</a>
+      <a href="#" onclick="pupclose()">取消</a>
+    </div>     
+  </div>
+  
+    </body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ('@ViewBag.lvl' == '0' || '@ViewBag.lvl' == '2') {
+            $(".p1").attr("style", "display:none");
+        }
+        setTimeout("end()", 3000);
+    });
+    function addvieo(obj,viewdeosrc) {
+
+      
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+
+
+        $("#video1").attr("src", "/Content/UploadFiles/videos/" + viewdeosrc + "")
+        $("#video1").attr("autoplay", "autoplay");
+        setTimeout("end()", 3000);
+
+    }
+    function start()
+    {
+        document.getElementById('video1').play();
+    }
+    function end()
+    {
+   
+        document.getElementById('video1').pause();
+        enroll()
+    }
+    function enroll() {
+
+
+
+        $("#bg").show();
+        $("#pop-ups").show();
+    }
+    function Save() {
+        $("#bg").hide();
+        $("#pop-ups").hide();
+        $("#video1").attr("src", "")
+    }
+    function Cancel() {
+        $("#bg").hide();
+        $("#pop-ups").hide();
+        $("#video1").attr("src", "")
+    }
+</script>

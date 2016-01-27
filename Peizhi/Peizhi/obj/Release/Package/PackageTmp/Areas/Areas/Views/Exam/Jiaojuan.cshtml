@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/Home/Index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 交卷 -->
+  <article class="carry-out">
+    
+    <section class="exam-questions">
+      
+      
+      <div class="objective">
+       
+        <article class="question-one">
+          @Html.Raw(ViewBag.title)
+          
+
+          
+
+        </article>
+      </div>
+    </section>
+  </article>
+  <!-- 交卷 END -->
+
+</body>
+</html>

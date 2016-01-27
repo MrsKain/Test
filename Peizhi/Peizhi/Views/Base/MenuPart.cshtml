@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+ <div class="data_download">
+        <!-- 筛选列表 -->
+        <div class="filter_lists">
+            <div class="filter_lst">
+                <label>类别：</label>
+                <ul>
+                    <li class="active"><a href="#">不限</a></li>
+                    @{
+                        DataTable dt = ViewBag.lvl1 as DataTable;
+                        foreach(DataRow dr in  dt.Rows){
+                         <li onclick="subject('@dr["id"].ToString()',this)"><a href="#">@dr["title"].ToString()</a></li>
+                        }                        
+                        }
+                </ul>
+            </div>
+            
+            <div class="filter_lst">
+                <label>学科：</label>
+                <ul id="lvl2">
+                  
+                     @{
+                         DataTable dts = ViewBag.lvl2 as DataTable;
+                        foreach(DataRow dr in  dts.Rows){
+                         <li title="@dr["id"].ToString()" onclick="search('@dr["id"].ToString()',this)"><a href="#">@dr["title"].ToString()</a></li>
+                        }                        
+                        }
+                </ul>
+            </div>
+        </div>
+     </div>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    function subject(id,obj)
+    {
+        $.ajax({
+            type: "post",
+            url: "/base/MenuAjax",
+            data: { types: id},
+            success: function (sc) {
+
+                $("#lvl2").empty()
+                $("#lvl2").append(sc);
+
+            }
+
+        });
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+    }
+
+</script>

@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "首页Banner";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+@using System.Data;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>首页Banner</title>
+    <script src="/Content/js/jquery-2.0.3.min.js"></script>
+    <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgThree.js"> </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            UploadK();
+            $('#upload_file').hide();
+            $(document).find('.delImg').click(function (e) {
+                $(this).parent().remove();
+                var file_count=$(document).find('.delImg').length
+                if (file_count <= 3) {
+                    $('#upload_file').show();
+                }
+            });
+        });
+
+        function Save() {
+            var str = "";
+            $(".pic_demo").each(function () {
+                $(this).find(".imgBox").each(function () {
+
+                    str += (str == "" ? "" : ",") + "" + $(this).find("img").attr("data-url") + "";
+                });
+            });
+            $.ajax({
+                url: "/PCserver/BanerSaveAjax",
+                data: {
+                    imgurl: str
+                  
+                },
+                type: "post",
+                datatype: "text",
+                success: function (IsSuccess) {
+                    if (IsSuccess=="0") {
+                        location.href = '/PC/Baner';
+                    }
+                    else {
+                        alert("设置失败");
+
+                    }
+                }
+            });
+        }
+
+    </script>
+   
+</head>
+<body>
+    <div class="main-container container-fluid">
+        <div class="page-content">
+            <div class="page-breadcrumbs page-header position-relative">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="###">首页Banner</a>
+                    </li>
+                    <li>
+                        <a href="/PC/Questionlist">首页Banner</a>
+                    </li>
+
+                </ul>
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#">
+                        <i class="fa fa-arrows-h"></i>
+                    </a>
+                    <a class="refresh" id="refresh-toggler" href="###">
+                        <i class="glyphicon glyphicon-refresh"></i>
+                    </a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 col-xs-12" style="width: 100%">
+                                <div class="widget flat radius-bordered">
+                                    <div class="widget-header bg-blue">
+                                        <span class="widget-caption">首页Banner</span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="registration-form">
+                                            <form role="form">
+                                                <div class="form-title">
+                                                    首页Banner修改
+                                                </div>                                                                                                                                                                                                                                                                                                                              
+                                                   <hr class="wide" />
+                                            <div class="form-title">
+                                                图片(支持图片格式：Jpg,Jpeg,Png,Bmp,Gif,最多允许3张图片，建议尺寸1920*456)
+                                            </div>
+                                             
+                                            <div class="form-group">
+                                                <span class="input-icon icon-right">
+                                                    <input type="file" class="form-control" name="upload_file" id="upload_file">
+                                                     
+                                                </span>
+                                                 <div id="some_file_queue"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="pic_demo">
+                                                    @{
+                                                        DataTable dt = ViewBag.table as DataTable;
+                                                        foreach (DataRow dr in dt.Rows)
+                                                        {
+                                                         <div class="imgBox"><span class="editImg" style="display:inline;"><i class="icon icon-edit"></i></span><span class="delImg" style="display: inline;">×</span><p class="imgInfo" style="display: none;"><input type="text" name="imgIndex" class="imgIndex" value="1"></p><img src="/Content/UploadFiles/images/@dr["imageurl"].ToString()" data-url="@dr["imageurl"].ToString()"></div>                                                        
+                                                        }
+                                                       
+                                                        }
+                                                </div>
+                                            </div>                  
+                                                <button type="button" onclick="Save()" class="btn btn-blue">保存</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

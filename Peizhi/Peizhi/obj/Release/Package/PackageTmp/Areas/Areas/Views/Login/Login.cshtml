@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/Home/Index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 登录 -->
+  <article class="login-form">
+    <form>
+      <div class="title">欢迎登录易考网</div>
+      <div class="ipt-text">
+        <input type="text" id="txtName" placeholder="用户名">
+      
+      </div>
+      <div class="ipt-text">
+        <input type="password" id="txtPwd" placeholder="密码">
+     
+      </div>
+      <input class="btn-login" type="button" onclick="LoginVerify()" value="登 录">
+      <div class="regist-group">
+        <a class="a1" href="/Areas/login/PasswordBack">忘记密码？</a>
+        <a class="a2" href="/Areas/login/regist">注册新账号</a>
+      </div>
+    </form>
+  </article>  
+  <!-- 登录 END -->
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        function LoginVerify() {
+            var txtName = $("#txtName").val();
+            var txtPwd = $("#txtPwd").val();
+            if (txtName == "") {
+
+                $("#txtName").attr("placeholder", "用户名不可以为空");
+                $('#txtName').css({
+                    'border-color': 'red'
+                });
+            }
+            else if (txtPwd == "") {
+                $("#txtPwd").attr("placeholder", "密码不可以为空");
+                $('#txtPwd').css({
+                    'border-color': 'red'
+                });
+            }
+            else {
+                $.ajax({
+                    type: "post",
+                    url: "/Login/LoginActionUser",
+                    data: {
+                        va1: txtName,
+                        va2: txtPwd
+                    },
+                    success: function (IsSuccess) {
+                        if (IsSuccess == "0") {
+                            location.href = '/Areas/Home/Index';
+                        }
+                        else {
+                            $("#txtPwd").val("");
+                            $('#txtPwd').css({
+                                'border-color': 'red'
+                            });
+                            $("#txtPwd").attr("placeholder", "登录名或密码错误");
+                        }
+
+
+                    }
+
+                });
+
+            }
+        }
+        $().ready(function () {
+            $("#txtPwd").keydown(function () {
+
+                if (event.keyCode == 13) {
+                    LoginVerify();
+                }
+            });
+        });
+    </script>

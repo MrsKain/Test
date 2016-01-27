@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+   @{
+        Html.RenderAction("Head", "Home", new { id = 7});
+         }
+  <!-- 头部 END -->
+
+  <!-- 关于我们 -->
+  <article class="certif-center">
+    
+    <ol id="tab-ol-2">
+      <!-- 中心介绍 -->
+      <li>
+        <section class="certif-lists">
+         @Html.Raw(ViewBag.about)
+        </section>
+      </li>
+    
+   
+    
+    </ol>
+  </article>
+  <!-- 关于我们 END -->
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<style type="text/css">
+	</style>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>综合练习</title>
+<!--js-->
+<script type="text/javascript" src="/Content/js/Rich_Lee.js"></script>
+<script type="text/javascript" src="/Content/js/rich_one.js"></script>
+<script type="text/javascript" src="/Content/js/Html5shiv.js"></script>
+<!-- css -->
+    <link rel="stylesheet" type="text/css" href="/Content/css/main.css">
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Content/css/rich_one.css"/>
+</head>
+
+<body class="bgc_fa">
+
+   <!-- 顶部 -->
+   @{
+        Html.RenderAction("HeadPart", "Base", new { id = 3 });
+    }  <div class="data_download">
+         @{
+        Html.RenderAction("MenuPart", "Base");
+    }
+  
+  <!-- 顶部导航 END -->
+<!--  <div style="border-top: #DDDDDD 1px solid;width: 100%;clear:both;height: 10px;"></div>-->
+	<section class="rexamp_box">
+		<div class="rexamp_left">
+			<div class="left_nav">
+		        <ul>
+		           <li><a href="/Exam/ExamIndex">模拟考试</a></li>
+                    <li><a href="/Exam/Examtest">模拟练习</a></li>
+                    <li><a href="/Exam/Examzhtest">综合练习</a></li>
+		        </ul>
+	       	 	<div class="bg"></div>
+      		</div>
+		</div>
+		<div class="rexamp_right">
+			
+            @{
+                DataTable dt = ViewBag.table as DataTable;
+                foreach(DataRow dr in dt.Rows)
+                {
+                <ul class="explain_type01">
+				<li class="li02">
+					培知教育 
+				</li>
+				<li class="li05">
+					<p class="main">
+						1.@dr["Question"].ToString()（）
+					</p>
+					<div>
+						<span>A. @dr["A"].ToString() </span><br/>
+						<span>B. @dr["B"].ToString() </span><br/>
+						<span>C. @dr["C"].ToString()</span><br/>
+						<span>D. @dr["D"].ToString()</span>
+					</div> 
+				</li>
+				<li class="li06">
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>A</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>B</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>C</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>D</label>
+					</span>
+				</li>
+				<li class="li07"  style="display:none;">
+					<label class="yes">正确 @dr["Answer"].ToString()</label>
+					<p>解析：@dr["Analysis"].ToString()</p>
+					<a href="###" onclick="next('@ViewBag.id')">下一题</a>
+				</li>				
+			</ul>
+                }
+                
+                }
+		</div>
+	</section>
+		<div style="height: 40px;width: 100%;clear: both;"></div>
+         </div>
+  <!-- 底部 -->
+   @{
+        Html.RenderAction("Foot", "Base");
+    }
+       
+  <!-- 底部 END -->
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  
+    function next(id)
+    {
+        var ids = $("#lvl2").find("li[class=active]").attr("title");
+        alert(ids);
+        $.ajax({
+            type: "post",
+            url: "/Exam/ExamzhtestAjax",
+            data: { id: id, ids: ids },
+            success: function (IsSuccess) {
+               
+                $(".rexamp_right").empty()
+                $(".rexamp_right").append(IsSuccess);
+
+            }
+
+        });
+    }
+
+    function answer()
+    {
+        $(".li07").removeAttr("style")
+    }
+    function search(id, obj)
+    {
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+        $.ajax({
+            type: "post",
+            url: "/Exam/ExamzhtestAjax",
+            data: { id: 1, ids: id },
+            success: function (IsSuccess) {
+
+                $(".rexamp_right").empty()
+                $(".rexamp_right").append(IsSuccess);
+
+            }
+
+        });
+    }
+</script>

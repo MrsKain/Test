@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "修改微课";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+<script src="/Content/editor/kindeditor.js" type="text/javascript"></script>
+<script src="/Content/editor/plugins/code/prettify.js"></script>
+ <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgData.js"> </script>
+<script type="text/javascript">  
+    function Save() {
+        if ($("#title").val() == null) {
+            alert("标题不可以为空");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/PCserver/UpdateVideoAjax",
+            data: {
+                id: "@ViewBag.id",
+                title: $("#title").val(),
+                kcjj: $("#kcjj").val(),
+                kcjs: $("#kcjs").val()
+               
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("修改成功");
+                    location.href = "/PC/VideoInforManager";
+                   
+
+                }
+                else {
+                    alert("修改失败");
+                }
+
+
+            }
+
+        });
+    }
+</script>
+ <form id="example" >
+    <div class="page-content">
+
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="###">课时编辑</a>
+                </li>
+                <li>
+                    <a href="/PC/UpdateVideoInfor/@ViewBag.id">课时编辑</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="page-header position-relative">
+            <div class="header-title">
+            </div>
+
+            <div class="header-buttons">
+                <a class="sidebar-toggler" href="#">
+                    <i class="fa fa-arrows-h"></i>
+                </a>
+                <a class="refresh" id="refresh-toggler" href="#">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </a>
+                <a class="fullscreen" id="fullscreen-toggler" href="#">
+                    <i class="glyphicon glyphicon-fullscreen"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12" style="width: 100%">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-blue">
+                                    <span class="widget-caption">修改课时</span>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="registration-form">
+                                      
+                                            <div class="form-title">
+                                               修改课时
+                                          </div>
+                                         <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="title"  value="@ViewBag.titles" placeholder="标题">
+                                                            </span>
+                                                        </div>
+                                       
+
+                                      
+                                             <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                               
+                                                                 <textarea name="concents" style="width: 100%; height: 294px; height: 294px;"    placeholder="课程简介" id="kcjj" class="input1">@ViewBag.brief</textarea>
+                                                            </span>
+                                                        </div>
+                                       
+                                             
+                                        
+                                                      <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                               
+                                                                 <textarea name="concents" style="width: 100%; height: 294px; height: 294px;"    placeholder="课程介绍" id="kcjs" class="input1">@ViewBag.introduce</textarea>
+                                                            </span>
+                                                        </div>
+                                       
+                                                    
+                                         
+                                           
+
+                                            <button type="button" onclick="Save()" class="btn btn-blue">修改</button>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

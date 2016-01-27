@@ -1,0 +1,185 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css">
+<link rel="stylesheet" type="text/css" href="/Content/css/main.css">
+<!-- js -->
+<script type="text/javascript" src="/Content/js/jquery-1.11.3.min.js"></script>
+</head>
+<body class="bgc_fa">
+  <script type="text/javascript">
+      function gotop() {
+          $("html,body").animate({ scrollTop: 0 }, 400);
+      }
+  </script>
+
+  <!-- 顶部 -->
+  
+  @{
+       Html.RenderAction("HeadPart", "Base", new { id = 5});
+         }
+  <!-- 顶部导航 END -->
+
+  <!-- 侧边悬浮框 -->
+  @{
+       Html.RenderAction("Bmzx", "Base");
+         }
+  <!-- 侧边悬浮框END -->
+
+  <!-- 课程视频 -->
+  <div class="course_videos">
+    <div class="video">
+      <div class="title">培知教育</div>
+      <div class="video_lists">
+        <div class="film">
+          <video width="860" height="450" id="video1" src="/Content/videos/mov_bbb.mp4" poster="/Content/images/index_pic_1.png" controls="controls"></video>
+        </div>
+        <div class="right_lists">
+          <div class="h4">课程列表</div>
+          <ul>
+          
+         
+              @{
+                  DataTable dt = ViewBag.table as DataTable;
+                  foreach(DataRow dr in dt.Rows)
+                  {
+                
+                  if(ViewBag.id==dr["id"].ToString())
+                  {
+                    <li class="active" onclick="addvieo(this,'@dr["videourl"].ToString()')"><a href="###">@dr["title"].ToString()</a></li>
+                  }
+                  else
+                  {
+                    <li onclick="addvieo(this,'@dr["videourl"].ToString()')"><a href="###">@dr["title"].ToString()</a></li>
+                  }
+                  }
+                  }
+          </ul>
+        </div>
+      </div>
+      <div class="lesson_tips">
+        <p class="p1" >
+          您现在观看的是试听课，<a href="#">立即报名</a> 可享受完整课程；
+        </p>
+        <div class="share">
+         
+          <!-- JiaThis Button BEGIN -->
+          <div class="jiathis_style">
+            <span class="jiathis_txt">分享给朋友：</span>
+            <a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+            <a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+            <a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+            <a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+          </div>
+          <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+          <!-- JiaThis Button END -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 本节课程简介 -->
+    <div class="this_lesson">
+      <div class="title">本节课程简介：</div>
+      <div class="writing">@ViewBag.brief</div>
+    </div>
+
+    <!-- 课程要点 -->
+    <div class="this_lesson">
+      <div class="title">课程要点</div>
+      <div class="writing">@ViewBag.introduce</div>
+    </div>
+  </div>
+  <!-- 课程视频 END -->
+
+  <!-- 底部 -->
+  @{
+      Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+      <div id="pop_up_bg"></div>
+  <div id="pop_up_content">
+    <div class="title">确定报名该课程吗？</div>
+    <div class="info">
+      <div class="img">
+        <a href="#">
+          <img src="/Content/UploadFiles/images/@ViewBag.image"  width="170px" height="104px" alt="培知教育" id="image" />
+        </a>
+      </div>
+      <div class="middle">
+        <p class="p1"><a href="#" id="title">@ViewBag.title</a></p>
+        <p class="p2" id="introduce">@ViewBag.introduce</p>
+      </div>
+    </div>
+    <!-- 注意事项 -->
+    <div class="precautions">
+      <div class="h5"><span>*</span>注意事项</div>
+      <p>1. 联系客服，通过支付宝、微信、银行卡等转账到指定账户</p>
+      <p>2. 客服确认收到款项后，即报名成功</p>
+    </div>
+    <div class="price">
+      本课程共：<strong></strong><span id="counts">@ViewBag.counts</span>课时
+    </div>
+    <div class="btn_group">
+      <a class="a1 active" href="###" onclick="Save()">确定</a>
+      <a class="a2" href="###" onclick="Cancel()">取消</a>
+    </div>
+  </div>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ('@ViewBag.lvl' == '0' || '@ViewBag.lvl' == '2') {
+            $(".p1").attr("style", "display:none");
+        }
+        setTimeout("end()", 3000);
+    });
+    function addvieo(obj,viewdeosrc) {
+
+      
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+
+
+        $("#video1").attr("src", "/Content/UploadFiles/videos/" + viewdeosrc + "")
+        $("#video1").attr("autoplay", "autoplay");
+        setTimeout("end()", 3000);
+
+    }
+    function start()
+    {
+        document.getElementById('video1').play();
+    }
+    function end()
+    {
+   
+        document.getElementById('video1').pause();
+        enroll()
+    }
+    function enroll() {
+
+
+
+        $("#pop_up_bg").show();
+        $("#pop_up_content").show();
+    }
+    function Save() {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+        $("#video1").attr("src", "")
+    }
+    function Cancel() {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+        $("#video1").attr("src", "")
+    }
+</script>

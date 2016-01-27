@@ -1,0 +1,115 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+     <style type="text/css">
+        .hide {
+            display:none;
+        }
+    </style>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/home/index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 考试 -->
+  <article class="examination">
+    <section class="exam-regulat">
+      <div class="exam-name">
+       @ViewBag.title
+      </div>
+      <div class="exam-info">
+        本试题共：<span>@ViewBag.counts</span>题     卷面总分：<span>@ViewBag.grades</span>分      考试时长：<span>90</span>分钟
+      </div>
+    </section>
+    <!-- 选择题 -->
+      <div id="question">
+    
+          @{
+              DataTable dt = ViewBag.Question as DataTable;
+              
+              foreach(DataRow dr in dt.Rows)
+              {
+              <section class="multiple-choice">
+      <div class="topic-name">选择题</div>
+      <div class="topic">
+        <p class="p1">
+         @dr["Question"].ToString()（ ）
+        </p>
+        <p class="pa">A. @dr["A"].ToString()</p>
+        <p class="pa">B. @dr["B"].ToString()</p>
+        <p class="pa">C. @dr["C"].ToString()</p>
+        <p class="pa">D. @dr["D"].ToString()</p>
+        <ul>
+          <li onclick="answer(this)"><a href="#">A</a></li>
+          <li onclick="answer(this)"><a href="#">B</a></li>
+          <li onclick="answer(this)"><a href="#">C</a></li>
+          <li onclick="answer(this)"><a href="#">D</a></li>
+          <a class="next" href="###" onclick="next(2)" >下一题</a>
+        </ul>
+           <div class='clear'></div>
+                    <div style='margin: 10px 0;width:100%;' class="hide">
+					<label class='yes' style='color: #d4020c;'>正确: @dr["Answer"].ToString()</label>
+					<p  style='color: #d4020c;'>解析：@dr["Analysis"].ToString()</p>
+                         </div>
+      </div>
+    </section>
+              }
+              
+              }
+          </div>
+  </article>
+  <!-- 考试 END -->
+
+  <div class="clear h50"></div>
+
+  <!-- 底部 -->
+
+  <!-- 底部 END -->
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function answer(obj) {
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+        $(obj).parent().next().next().removeClass("hide");
+    }
+    function next(counts)
+    {
+        $.ajax({
+            type: "post",
+            url: "/Areas/Exam/Question/"+counts,
+            data: {
+                Examtype:'@ViewBag.id'
+            },
+            success: function (sc) {
+                $("#question").empty();
+                $("#question").append(sc);
+            }
+
+        });
+    }
+    </script>

@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "培知教育-修改视频";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+@using System.Data;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改视频</title>
+    <script src="/Content/js/jquery-2.0.3.min.js"></script>
+    <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgData.js"> </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            UploadK();
+            $('#upload_file').hide();
+            $(document).find('.delImg').click(function (e) {
+                $(this).parent().remove();
+                var file_count = $(document).find('.delImg').length
+                if (file_count <= 3) {
+                    $('#upload_file').show();
+                }
+            });
+        });
+
+        function Save() {
+            var str = "";
+            $(".pic_demo").each(function () {
+                $(this).find(".imgBox").each(function () {
+
+                    str += (str == "" ? "" : ",") + "" + $(this).find("img").attr("data-url") + "";
+                });
+            });
+            $.ajax({
+                url: "/PCserver/UpdateVideosAjax",
+                data: {
+                    imgurl: str,
+                    id: '@ViewBag.id',
+                    title:$("#title").val(),
+                    brief: $("#brief").val(),
+                    introduce: $("#introduce").val(),
+                },
+                type: "post",
+                datatype: "text",
+                success: function (IsSuccess) {
+                    if (IsSuccess == "0") {
+                        location.href = '/PC/VideoInforManager';
+                    }
+                    else {
+                        alert("修改失败");
+
+                    }
+                }
+            });
+        }
+
+    </script>
+   
+</head>
+<body>
+
+        <div class="page-content">
+            <div class="page-breadcrumbs page-header position-relative">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="###">修改视频</a>
+                    </li>
+                    <li>
+                        <a href="/PC/UpdateVideo">修改视频</a>
+                    </li>
+
+                </ul>
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#">
+                        <i class="fa fa-arrows-h"></i>
+                    </a>
+                    <a class="refresh" id="refresh-toggler" href="###">
+                        <i class="glyphicon glyphicon-refresh"></i>
+                    </a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="page-body">
+
+        <div class="row">
+            @{
+                DataTable dt= ViewBag.table as DataTable;
+                foreach(DataRow dr in dt.Rows)
+                {
+                <div class="col-lg-6 col-sm-6 col-xs-12" style="width:100%">
+                <div class="widget">
+                    <div class="widget-header bordered-bottom bordered-palegreen">
+                        <span class="widget-caption">底部信息</span>
+                    </div>
+                    <div class="widget-body">
+                        <div>
+                            <form class="form-horizontal form-bordered" role="form">
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">课程名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="@dr["title"].ToString()" id="title" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">简介</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="@dr["brief"].ToString()" id="brief" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">介绍</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="concents" style="width: 100%; height: 100px;"  id="introduce" class="input1">@dr["introduce"].ToString()</textarea>   
+                                    </div>
+                                </div>
+                            
+                                  <hr class="wide" />
+                                            <div class="form-title">
+                                                视频(支持视频格式：MP4,AVI,RMVB)
+                                            </div>
+                                             
+                                            <div class="form-group">
+                                                <span class="input-icon icon-right">
+                                                    <input type="file" class="form-control" name="upload_file" id="upload_file">
+                                                     
+                                                </span>
+                                                 <div id="some_file_queue"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="pic_demo">
+                                                    
+                                                         <div class="imgBox"><span class="editImg" style="display:inline;"><i class="icon icon-edit"></i></span><span class="delImg" style="display: inline;">×</span><p class="imgInfo" style="display: none;"><input type="text" name="imgIndex" class="imgIndex" value="1"></p><img src="/Content/UploadFiles/images/@dr["videourl"].ToString()" data-url="@dr["videourl"].ToString()"></div>                                                        
+                                                      
+                                                </div>
+                                                    <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="button" onclick="Save()" class="btn btn-palegreen">修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                }
+                
+                
+                }
+            
+
+        </div>
+    </div>
+        </div>
+
+</body>
+</html>
+
+

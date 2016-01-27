@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+ <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+    <style type="text/css">
+          .course-details .course-lesson-lists ul li {
+    overflow: hidden;
+    padding-right: 24px;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    font-size: 1em;
+    background: url(/Areas/Areas/Content/images/icon_videos_play_2.png) no-repeat right center;
+    -webkit-background-size: auto 16px;
+            background-size: auto 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+    </style>
+</head>
+<body>
+
+  <!-- 头部 -->
+    @{
+        Html.RenderAction("Head", "Home", new { id = 2});
+         }
+  <!-- 头部 END -->
+
+  <!-- 微课详情 -->
+  <article class="course-details">
+    <div class="top-title">高一全科全年套餐</div>
+    <img class="course-img" s src="/Content/UploadFiles/images/@ViewBag.image" alt="培知教育">
+    <section class="course-price">
+    
+      <div class="div2">
+        <strong>课时数：<span>@ViewBag.counts课时</span></strong>
+        <strong>总时长：<span>@ViewBag.sumtime分钟</span></strong>
+        <strong>主讲老师：<span>@ViewBag.teacher</span></strong>
+      </div>
+    </section>
+    <!-- 课程列表 -->
+    <section class="course-lesson-lists">
+      <div class="lesson-lists-title">课程列表：</div>
+      <ul>
+     
+            @{
+                    DataTable dt = ViewBag.table as DataTable;
+                    foreach(DataRow dr in dt.Rows)
+                    {
+                     <li>
+                    
+                    <a href="/Areas/Video/VideoPlay/@dr["id"].ToString()">@dr["title"].ToString()</a>
+                </li>
+                    }
+                    }
+      </ul>
+    </section>
+    <!-- 课程介绍 -->
+    <section class="course-lesson-lists">
+      <div class="lesson-lists-title">课程介绍：</div>
+      <div class="lesson-lists-content">
+       @ViewBag.introduce
+      </div>
+    </section>
+    <!-- 课程评论 -->
+    <section class="course-lesson-comment">
+      <div class="lesson-comment-title">课程评论：</div>
+      <ul>
+        <li>
+         
+      
+        @{
+                 DataTable dts = ViewBag.Comment as DataTable;
+                 foreach(DataRow dr in dts.Rows)
+                 {
+                 
+            
+            
+             <div class="div1">
+            <div class="p1">
+              <div class="img">
+                <img src="/Content/UploadFiles/images/@dr["image"].ToString()" alt="头像" />
+              </div>
+              <div class="user-info">@dr["Bank"].ToString()</div>
+            </div>
+            <p class="p2">@dr["Add_Date"].ToString()</p>
+          </div>
+          <div class="div2">
+             @dr["Comment"].ToString()
+          </div>
+                 }
+                 
+                 }
+              </li>
+      </ul>
+      <!-- 发表评论 -->
+      <div class="comment-form">
+        <form>
+          <textarea id="Comment"></textarea>
+          <input class="btn-issue" type="button" onclick="Comments('@ViewBag.ids')" value="发表评论">
+        </form>
+      </div>
+    </section>
+  </article>
+  <!-- 微课详情 END -->
+
+  <div class="clear h50"></div>
+
+  <!-- 底部 -->
+ 
+  <!-- 底部 END -->
+
+</body>
+</html>
+<script type="text/javascript">
+    function Comments(id)
+    {
+        $.ajax({
+            type: "post",
+            url: "/Video/AddCommentAjax",
+            data: {
+                id: id,
+                Comment:$("#Comment").val()
+               
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("评论成功");
+                    location.href = '/Areas/Video/Videoinfor/'+id;
+                }
+                else {
+                    alert("评论失败");
+
+                }
+
+
+            }
+
+        });
+    }
+</script>

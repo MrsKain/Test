@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<header>
+    <section class="top-logo">
+      <a class="logo-img" href="#">
+        <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+      </a>
+      <div class="login-box">
+        <a href="/Areas/Login/Regist">注册</a>
+        <a class="active" href="/Areas/Login/Login">登录</a>
+      </div>
+    
+      <div class="user_name">
+        您好,
+        <a class="names" href="/Areas/Member/memberexam">@ViewBag.bank</a>
+      </div>
+    
+    </section>
+    <section class="index-nav">
+      <ul id="headnav">
+        <li><a href="/Areas/Home/index">网站首页</a></li>
+      <li><a href="/Areas/Video/Videolist">微课中心</a></li>
+      <li><a href="/Areas/Exam/ExamIndex">考试中心</a></li>
+      <li><a href="/Areas/Home/Dataload">资料下载</a></li>
+      <li><a href="/Areas/Home/Newslist">新闻资讯</a></li>
+      <li><a href="/Areas/Home/Authentication">认证中心</a></li>
+      <li class="active"><a href="/Areas/Home/About">关于我们</a></li>
+      </ul>
+    </section>
+  </header>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#headnav").children().removeClass("active");
+        $("#headnav li:nth-child(@ViewBag.ids)").addClass("active");
+        if ('@ViewBag.uid' == null || '@ViewBag.uid' == '') {
+            $(".user_name").attr("style", "display:none;")
+        }
+        else {
+            $(".login-box").attr("style", "display:none;")
+        }
+    });
+
+</script>

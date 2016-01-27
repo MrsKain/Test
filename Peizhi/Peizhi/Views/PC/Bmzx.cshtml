@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "报名咨询";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>报名咨询</title>
+    <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgOne.js"> </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            UploadK();
+            $('#upload_file').hide();
+            $(document).find('.delImg').click(function (e) {
+                $(this).parent().remove();
+                var file_count = $(document).find('.delImg').length
+                if (file_count <= 1) {
+                    $('#upload_file').show();
+                }
+            });
+        });
+
+        function Save() {
+            var str = "";
+            $(".pic_demo").each(function () {
+                $(this).find(".imgBox").each(function () {
+
+                    str += (str == "" ? "" : ",") + "" + $(this).find("img").attr("data-url") + "";
+                });
+            });
+            $.ajax({
+                url: "/PCserver/BmzxSaveAjax",
+                data: {
+                    Img: str,
+                    QQone: $("#QQone").val(),
+                    QQtwo: $("#QQtwo").val(),
+                    Tel: $("#Tel").val(),
+                },
+                type: "post",
+                datatype: "text",
+                success: function (IsSuccess) {
+                    if (IsSuccess=="0") {
+                        location.href = '/PC/Bmzx';
+                    }
+                    else {
+                        alert("设置失败");
+
+                    }
+                }
+            });
+        }
+
+    </script>
+   
+</head>
+<body>
+    <div class="main-container container-fluid">
+        <div class="page-content">
+            <div class="page-breadcrumbs page-header position-relative">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="###">报名咨询</a>
+                    </li>
+                    <li>
+                        <a href="/PC/Questionlist">报名咨询</a>
+                    </li>
+
+                </ul>
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#">
+                        <i class="fa fa-arrows-h"></i>
+                    </a>
+                    <a class="refresh" id="refresh-toggler" href="###">
+                        <i class="glyphicon glyphicon-refresh"></i>
+                    </a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 col-xs-12" style="width: 100%">
+                                <div class="widget flat radius-bordered">
+                                    <div class="widget-header bg-blue">
+                                        <span class="widget-caption">报名咨询</span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="registration-form">
+                                            <form role="form">
+                                                <div class="form-title">
+                                                    报名咨询
+                                                </div>
+                                              <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="QQone"  value="@ViewBag.QQone" placeholder="联系QQ1">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="QQtwo" value="@ViewBag.QQtwo"   placeholder="联系QQ2">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>   
+                                                        <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="Tel" value="@ViewBag.Tel"   placeholder="联系电话">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                                                                                                                                                                              
+                                                   <hr class="wide" />
+                                            <div class="form-title">
+                                                图片(支持图片格式：Jpg,Jpeg,Png,Bmp,Gif,单张图片上传)
+                                            </div>
+                                             
+                                            <div class="form-group">
+                                                <span class="input-icon icon-right">
+                                                    <input type="file" class="form-control" name="upload_file" id="upload_file">
+                                                     
+                                                </span>
+                                                 <div id="some_file_queue"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="pic_demo">
+                                                    <div class="imgBox"><span class="editImg" style="display: inline;"><i class="icon icon-edit"></i></span><span class="delImg" style="display: inline;">×</span><p class="imgInfo" style="display: none;"><input type="text" name="imgIndex" class="imgIndex" value="1"></p><img src="/Content/UploadFiles/images/@ViewBag.Img" data-url="@ViewBag.Img"></div>
+                                                </div>
+                                            </div>                  
+                                                <button type="button" onclick="Save()" class="btn btn-blue">设置</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

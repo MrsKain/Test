@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+@using Kain_class.HtmlSubstring;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+    <script src="/Content/js/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+
+  <!-- 头部 -->
+   @{
+        Html.RenderAction("Head", "Home", new { id = 5});
+         }
+  <!-- 头部 END -->
+
+  <!-- 新闻资讯 -->
+  <article class="pei-news">
+    <ul id="exam-ul" class="tab-ul">
+      <li ><a href="/Areas/Home/Newslist/1">新闻资讯</a></li>
+         <li ><a href="/Areas/Home/Newslist/2">最新动态</a></li>
+    </ul>
+    <ol id="exam-ol" class="tab-ol">
+      <!-- 最新动态 -->
+      <li>
+      @{
+          DataTable dt = ViewBag.table as DataTable;
+          foreach(DataRow dr in dt.Rows)
+          {
+           <a class="lessons" href="/Areas/Home/NewsInfor/@dr["id"].ToString()">
+          <div class="img">
+            <img src="/Content/UploadFiles/images/@dr["images"].ToString()" alt="培知教育">
+          </div>
+          <div class="right-content">
+            <div class="h4">@dr["title"].ToString()</div>
+            <div class="content">@SubstringFunction.ByteSubString(dr["Contents"].ToString(), 0, 110, true) </div>
+          </div>
+        </a>
+          }
+          
+          }
+      
+       
+       
+      </li>
+    </ol>
+  </article>
+  <!-- 新闻资讯 END -->
+
+</body>
+</html>

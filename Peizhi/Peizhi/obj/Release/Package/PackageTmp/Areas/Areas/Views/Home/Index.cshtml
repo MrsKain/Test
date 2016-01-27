@@ -1,0 +1,179 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+@using Kain_class.HtmlSubstring;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/swipe.js"></script>
+</head>
+<body>
+
+  <!-- 头部 -->
+    @{
+        Html.RenderAction("Head", "Home", new { id = 1 });
+         }
+  <!-- 头部 END -->
+
+  <!-- index -->
+  <article class="index">
+    <!-- banner -->
+    <div class="addWrap">
+      <div class="swipe" id="mySwipe">
+        <div class="swipe-wrap">
+       
+           @{
+               DataTable dtt = ViewBag.table5 as DataTable;
+               foreach (DataRow dr in dtt.Rows)
+               {
+               <div><a href="#">    <img src="/Content/UploadFiles/images/@dr["imageurl"].ToString()" width="1920px" height="200px" alt="Banner"></a></div>
+               
+               }
+        }
+        </div>
+             
+      </div>
+      <ul id="position">
+      
+             @{
+               DataTable dc = ViewBag.table5 as DataTable;
+               foreach (DataRow dr in dc.Rows)
+               {
+              <li class=""></li>
+               }
+        }
+      </ul>
+    </div>    
+    <script type="text/javascript">
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var banner = Swipe(document.getElementById('mySwipe'), {
+            auto: 2000,
+            continuous: true,
+            disableScroll: false,
+            callback: function (pos) {
+                var i = bullets.length;
+                while (i--) {
+                    bullets[i].className = ' ';
+                }
+                bullets[pos].className = 'cur';
+            }
+        });
+    </script>
+    <!-- bannner END -->
+
+    <!-- 微课中心  -->
+    <article class="exam-center">
+      <div class="title">
+        <div class="h5">微课中心</div>
+        <a class="btn_more" href="/Area/Video/Videolist">+MORE</a>
+      </div>
+      <ul class="content">
+        
+      
+            @{
+              DataTable dt = ViewBag.table1 as DataTable;
+              foreach(DataRow dr in dt.Rows)
+              {
+               <li>
+          <img  src="/Content/UploadFiles/images/@dr["images"].ToString()" alt="微课中心">
+          <div class="div1">
+            <span>@SubstringFunction.ByteSubString(dr["title"].ToString(), 0, 12, true)</span>
+            <a href="/Areas/video/videoinfor/@dr["id"].ToString()">开始学习</a>
+          </div>
+        </li>
+              }
+              }
+      </ul>
+    </article>
+    <!-- 微课中心 END -->
+
+    <!-- 最新动态 -->
+    <article class="latest-news">
+      <div class="title">
+        <div class="h5">最新动态</div>
+        <a class="btn_more" href="/Areas/Home/Newslist">+MORE</a>
+      </div>
+      <ul class="news-lists">
+       
+        
+          @{
+              DataTable dt2 = ViewBag.table2 as DataTable;
+              foreach (DataRow dr in dt2.Rows)
+              { 
+               <li>
+          <a href="/Areas/Home/Newsinfor/@dr["id"].ToString()">
+            <p class="p1">@dr["title"].ToString()</p>
+            <p class="p2">@dr["Add_Date"].ToString()</p>
+          </a>
+        </li>
+              }
+              }
+       
+      
+      </ul>
+    </article>
+    <!-- 最新动态 END -->
+
+    <!-- 考试中心 -->
+    <article class="lesson-center">
+      <div class="title">
+        <div class="h5">考试中心</div>
+        <a class="btn_more" href="/Areas/Exam/ExamIndex">+MORE</a>
+      </div>
+      <ul class="lesson-lists">
+      
+             @{
+                DataTable dt3 = ViewBag.table3 as DataTable;
+               
+                foreach (DataRow dr in dt3.Rows)
+                { 
+                  
+        <li>
+          <a href="/Areas/Exam/ExamInfor/@dr["id"].ToString()">@dr["title"].ToString()</a>
+        </li>
+                }
+                }
+      </ul>
+    </article>
+    <!-- 考试中心 END -->
+
+    <!-- 课程列表 -->
+    <article class="lesson-center">
+      <div class="title">
+        <div class="h5">课程列表</div>
+        <a class="btn_more" href="/Areas/Video/VideoList">+MORE</a>
+      </div>
+      <ul class="lesson-lists">
+       @{
+          DataTable dt4 = ViewBag.table4 as DataTable;
+          foreach (DataRow dr in dt4.Rows)
+          {
+           <li>
+          <a  href="/Areas/Video/Videoinfor/@dr["id"].ToString()">@dr["title"].ToString()</a>
+        </li>
+          }
+          }
+       
+      </ul>
+    </article>
+    <!-- 课程列表 END -->
+
+  </article>
+  <!-- index END -->
+
+</body>
+</html>

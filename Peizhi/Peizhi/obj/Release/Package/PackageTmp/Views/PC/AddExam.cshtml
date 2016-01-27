@@ -1,0 +1,188 @@
+﻿@{
+    ViewBag.Title = "添加试卷";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+<script src="/Content/editor/kindeditor.js" type="text/javascript"></script>
+<script src="/Content/editor/plugins/code/prettify.js"></script>
+ <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgData.js"> </script>
+<script type="text/javascript">
+    function OnchangeTypeTs() {
+
+        $("#type2").empty();
+        var str = $("#type1").find("option:selected").val();
+        $.ajax({
+            url: "/Base/GetTypeTwo/" + str,
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type2");
+
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+
+
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+    function OnchangeTypeT() {
+        $("#type1").empty();
+        $.ajax({
+            url: "/Base/GetTypeOne",
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type1");
+                $("<option value='0'>请选择</option>").appendTo(oSheng)
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            }
+        });
+    }
+
+    function Save() {
+        if ($("#title").val() == null) {
+            alert("标题不可以为空");
+            return;
+        }
+        if ($("#type2").find("option:selected").val() == null) {
+            alert("试卷类别不可以为空");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/PCserver/AddExamSaveAjax",
+            data: {
+                title: $("#title").val(),         
+                Types: $("#type2").find("option:selected").val()                     
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("添加失败");
+
+                }
+                else {
+                    location.href = '/PC/AddQuestion/' + IsSuccess;
+                }
+
+
+            }
+
+        });
+    }
+    $(document).ready(function () {
+        UploadK();
+        OnchangeTypeT();
+    });
+
+
+
+
+</script>
+ <form id="example" >
+    <div class="page-content">
+
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="###">添加试卷</a>
+                </li>
+                <li>
+                    <a href="/PC/AddExam">添加试卷</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="page-header position-relative">
+            <div class="header-title">
+            </div>
+
+            <div class="header-buttons">
+                <a class="sidebar-toggler" href="#">
+                    <i class="fa fa-arrows-h"></i>
+                </a>
+                <a class="refresh" id="refresh-toggler" href="#">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </a>
+                <a class="fullscreen" id="fullscreen-toggler" href="#">
+                    <i class="glyphicon glyphicon-fullscreen"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12" style="width: 100%">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-blue">
+                                    <span class="widget-caption">添加试卷</span>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="registration-form">
+                                      
+                                            <div class="form-title">
+                                                添加试卷（第一步：添加试卷。第二步：录入题目）
+                                          </div>
+                                         <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="title"  placeholder="试卷名称">
+                                                            </span>
+                                                        </div>                                                                          
+                                          <div class="row">
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                  <select class="form-control" name="country" id="type1"  onchange="OnchangeTypeTs()" data-bv-field="country">                                                       
+                                                                </select>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                  <select class="form-control" name="country" id="type2"  data-bv-field="country">                                                                         
+                                                                </select>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                                                                                                             
+                                            <button type="button" onclick="Save()" class="btn btn-blue">下一步</button>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

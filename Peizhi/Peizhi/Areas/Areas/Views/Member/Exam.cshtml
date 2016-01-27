@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+<header class="login-header">
+    <a class="logo-img" href="/Areas/Home/Index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 我的考试 -->
+  <article class="personal-center">
+    <a class="person-head" href="#">
+      <div class="head-img">
+       <img src="/Content/UploadFiles/images/@ViewBag.image" alt="头像">
+      </div>
+      <div class="name">@ViewBag.bank</div>
+    </a>
+
+    
+
+    <ol id="exam-ol" class="tab-ol">
+      <!-- 我的考试 -->
+      <li>
+        
+        @{
+            DataTable dt = ViewBag.table as DataTable;
+            foreach(DataRow dr in dt.Rows)
+            {
+            <div class="exam-papers">
+          <a class="exam-name" href="#">@dr["title"].ToString()</a>
+          
+        </div>
+            }
+            }
+      </li>
+    </ol>
+  </article>
+  <!-- 我的考试 END -->
+
+</body>
+</html>

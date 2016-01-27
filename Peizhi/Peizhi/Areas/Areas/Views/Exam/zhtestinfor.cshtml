@@ -1,0 +1,175 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/ccss/main.css"/>
+<!-- 0120样式新增 -->
+<style>
+  .multiple-choice .select-group {
+    padding: 5px 2%;
+    width: 96%;
+    height: 40px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .multiple-choice .select-group select {
+    overflow: hidden;
+    float: left;
+    margin: 5px 2% 5px 0;
+    width: 38%;
+    height: 30px;
+    line-height: 26px;
+    white-space: nowrap;
+    background: url(images/icon_bottom_arrow.png) no-repeat 95% center;
+    -webkit-background-size: auto 8px;
+            background-size: auto 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+            appearance: none;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .multiple-choice .select-group .btn-go {
+    float: right;
+    margin: 5px 0;
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    background-color: #02bc7e;
+    border-radius: 3px;
+  }
+</style>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/cjs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/cjs/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/home/index">
+      <img src="/Areas/Areas/Content/cimages/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 考试 -->
+  <article class="examination">
+    <!-- 选择题 -->
+    <section class="multiple-choice">
+      <div class="select-group">
+        <select id="type1" onchange="OnchangeTypeS()">
+         
+        </select>
+        <select id="type2">
+         
+        </select>
+        <a class="btn-go" href="#">GO</a>
+      </div>
+      <div class="topic-name">选择题</div>
+      <div class="topic">
+        <p class="p1">
+          1. 学生在学校各项权利中最主要、最基本的一项权利是哪一项（ ）
+        </p>
+        <p class="pa">A. 受教育权</p>
+        <p class="pa">B. 生命健康权</p>
+        <p class="pa">C. 性的不可侵犯权</p>
+        <p class="pa">D. 人身自由权</p>
+        <ul>
+          <!-- 错误li的class名为wrong -->
+          <li class="active"><a href="#">A</a></li>
+          <li><a href="#">B</a></li>
+          <li class="wrong"><a href="#">C</a></li>
+          <li><a href="#">D</a></li>
+          <a class="next" href="#">下一题</a>
+        </ul>
+        <!-- 正确答案 -->
+        <article class="correct-answer">
+          <!-- 正确 -->
+          <p class="p1 correct">正确！</p>
+          <!-- 错误 
+          <p class="p1 mistake">错误！</p>  -->
+          <p class="p2">
+            解析：社会哥开始鼓身份可关键是先打款发货给，和水资股僧等级你，圣诞节风格是大法官，源费...
+          </p>
+        </article>
+      </div>
+    </section>
+  </article>
+  <!-- 考试 END -->
+
+  <div class="clear h50"></div>
+
+
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnchangeType();
+    });
+    function OnchangeType() {
+        $.ajax({
+            url: "/Home/Gettypes",
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type1")
+                $("<option value='0'>请选择</option>").appendTo(oSheng)
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+    function OnchangeTypeS() {
+        var id = $("#type1").find("option:selected").val()
+        $.ajax({
+            url: "/Home/Getsubject/" + id,
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type2")
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+</head>
+<body>
+
+  <!-- 头部 -->
+     @{
+         Html.RenderAction("Head", "Home", new { id = 5 });
+         }
+  <!-- 头部 END -->
+
+  <!-- 新闻详情 -->
+  <article class="pei-news-detail">
+    <section class="title">
+      <div class="div1">@ViewBag.title</div>
+      <div class="div2">@ViewBag.date   发布者：培知教育</div>
+    </section>
+    <section class="certif-lists">
+     
+      <p>
+       @Html.Raw(ViewBag.Contents)
+      </p>
+    </section>
+ 
+    
+  </article>
+  <!-- 新闻详情 END -->
+
+</body>
+</html>

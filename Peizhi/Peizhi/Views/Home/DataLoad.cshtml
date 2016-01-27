@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <!--网页左上角小图标-->
+    <link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+    <title>易考网</title>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="/Content/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/main.css" />
+</head>
+<body class="bgc_fa">
+    <!-- 顶部 -->
+    @{
+        Html.RenderAction("HeadPart", "Base", new { id = 4 });
+    }
+    <!-- 顶部导航 END -->
+
+    <!-- 资料下载 -->
+    <div class="data_download">
+        <!-- 筛选列表 -->
+           @{
+        Html.RenderAction("MenuPart", "Base");
+    }
+        <!-- 内容 -->
+        <div class="content">
+            <!-- 左边导航 -->
+
+            <!-- 右侧内容 -->
+            <div class="right_info" style="width: 98%">
+
+                @{
+                    DataTable dt = ViewBag.table as DataTable;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                    <div class="meg_list">
+                        <div class="left">
+                            <p class="p1"><a href="###">@dr["title"].ToString()</a></p>
+                        </div>
+                        <a class="right" href="###" onclick="DataLoad('@dr["dataurl"].ToString()','@dr["title"].ToString()')">下载</a>
+                    </div>
+                    }
+                }
+                <!-- 页码 -->
+                @{
+                    Html.RenderAction("FenYe", "Base", new { pagesize = 8, recordCount = ViewBag.recordCount, pageIndex = ViewBag.pageindex, pageitem = 2, pageUrl = "/Home/DataLoad", strWhere = ViewBag.ids });
+                }
+            </div>
+        </div>
+    </div>
+    <!-- 资料下载 END -->
+
+    <!-- 底部 -->
+    @{
+        Html.RenderAction("Foot", "Base");
+    }
+    <!-- 底部 END -->
+</body>
+</html>
+<script type="text/javascript">
+    function DataLoad(id, title) {
+
+        location.href = "/HomeServer/FileDownload/" + id + "/" + title;
+    }
+    function search(id, obj) {
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+        var ids = $("#lvl2").find("li[class=active]").attr("title");
+        location.href = "/Home/DataLoad/" + 1 + "/" + ids;
+    }
+    $(document).ready(function () {
+        $("#lvl2").find("li").each(function () {
+
+            if ('@ViewBag.ids' == $(this).attr("title")) {
+                $(this).addClass("active");
+            }
+
+        });
+     });
+</script>

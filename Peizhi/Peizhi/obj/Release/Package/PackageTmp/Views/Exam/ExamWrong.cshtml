@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<style type="text/css">
+	</style>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>考试中心-交卷</title>
+<!--js-->
+<script type="text/javascript" src="/Content/js/Rich_Lee.js"></script>
+<script type="text/javascript" src="/Content/js/rich_one.js"></script>
+<script type="text/javascript" src="/Content/js/Html5shiv.js"></script>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Content/css/rich_one.css"/>
+</head>
+
+<body class="bgc_fa">
+
+   <!-- 顶部 -->
+  @{
+       Html.RenderAction("HeadPart", "Base", new { id = 3});
+         }
+  
+  <!-- 顶部导航 END -->
+ <!-- <div style="border-top: #DDDDDD 1px solid;width: 100%;height: 10px;"></div>-->
+	<section class="rexamp_box">
+		<div class="rexamp_left">
+		<div class="left_nav">
+	        <ul>
+	          <li><a href="/Exam/Examindex">完成评估</a></li>
+	          <li><a href="#">再做一次</a></li>
+	         
+	        </ul>
+        <div class="bg"></div>
+      	</div>
+			
+		</div>
+		<div class="rexamp_right">
+			<header>
+				<p>本次评估：客观题型 <font>@ViewBag.trade</font>分</p>
+			</header>
+			<div class="explain">
+				<label>评 分<br/>说 明</label>
+				<p>1. 客观题型均由系统评分</p>
+				<p>2. 主观题型由考生参考答案自行评分</p>
+			</div>
+			<ul class="explain_type01">
+				<li class="li01">
+					主观题型估分
+				</li>
+				<li class="li02">
+					三、材料分析题 <font></font>
+				</li>
+			
+					
+					 @{
+                    DataTable clt = ViewBag.zgt as DataTable;
+                    var t=1;
+                    foreach(DataRow dr in clt.Rows)
+                    {
+                    <li class="li03">
+					<p class="main">
+						@t. @dr["Question"].ToString()（@dr["trades"].ToString()分）
+					</p>
+					 <div class="clear"></div>
+                    <div style="margin: 10px 0;width:100%;" class="hide" >
+					<label class="yes" style="color: #d4020c;">正确: @dr["Answer"].ToString()</label>
+					<p  style="color: #d4020c;">解析：@dr["Analysis"].ToString()</p>
+                         </div>
+					<li class="li04">
+					<label>请估分，本题4分，得分</label>
+					<input type="" name="" id="" value="" />
+					<label>分</label>
+				</li>
+					
+				</li>
+                        t++;
+                    }
+                    }
+				
+				
+			
+			</ul>
+			<ul class="explain_type01" >
+				<li class="li01">
+					客观题型错题
+				</li>
+				<li class="li02">
+					选择题和判断题
+				</li>
+				@Html.Raw(ViewBag.kgt)
+			</ul>
+		</div>
+	</section>
+		<!--<div style="height: 40px;width: 100%;clear: both;"></div>-->
+  <!-- 底部 -->
+   @{
+       Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>

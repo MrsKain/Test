@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/Home/Index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 考试 -->
+  <article class="examination">
+    <!-- 选择题 -->
+    <section class="multiple-choice">
+      <div class="topic-name">选择题</div>
+      
+
+        @{
+            DataTable dt = ViewBag.table as DataTable;
+            var i=1;
+            foreach(DataRow dr in dt.Rows)
+            {
+            <div class="topic">
+        <p class="p1">
+          @i. @dr["Question"].ToString()（ ）
+        </p>
+        <p class="pa">A. @dr["A"].ToString()</p>
+        <p class="pa">B. @dr["B"].ToString()</p>
+        <p class="pa">C. @dr["C"].ToString()</p>
+        <p class="pa">D. @dr["D"].ToString()</p>
+          <ul>
+        
+          <a class="next" href="###" onclick="Delets('@dr["id"].ToString()')">移除错题</a>
+        </ul>
+        <article class="correct-answer">
+        
+          <p class="p1 correct">正确答案：@dr["Answer"].ToString()</p>
+        
+         
+          <p class="p2">
+            解析：@dr["Analysis"].ToString()
+          </p>
+        </article>
+      </div>
+                i++;
+            }
+            
+            }
+                
+    </section>
+  </article>
+  <!-- 考试 END -->
+
+  <div class="clear h50"></div>
+
+  <!-- 底部 -->
+  
+  <!-- 底部 END -->
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function Delets(id) {
+        $.ajax({
+            type: "post",
+            url: "/Member/DeletesWrong",
+            data: { id: id },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    location.href = "/Member/MemberWrong";
+                }
+                else {
+                    alert("删除失败！");
+                }
+
+
+            }
+
+        });
+    }
+
+</script>

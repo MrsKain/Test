@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "设置类别";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="/Content/alert/style.css" />
+<link type="text/css" rel="stylesheet" href="/Content/alert/popModal.css">
+ <form id="example" >
+    <div class="page-content">
+
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="###">底部信息</a>
+            </li>
+            <li>
+                <a href="/PC/Foot">底部信息</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="page-header position-relative">
+        <div class="header-title">
+        </div>
+
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="#">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="page-body">
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-6"  style="margin-left: 25%">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-blue"">
+                                    <span class="widget-caption">类别设置</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="MyTree5" class="tree tree-plus-minus tree-no-line tree-unselectable">
+                                        <div class="tree-folder" style="display: none;">
+                                            <div class="tree-folder-header">
+                                                <i class="fa fa-folder"></i>
+                                                <div class="tree-folder-name"></div>
+                                            </div>
+                                            <div class="tree-folder-content">
+                                            </div>
+                                            <div class="tree-loader" style="display: none;"></div>
+                                        </div>
+                                        <div class="tree-item" style="display: none;">
+                                            <i class="tree-dot"></i>
+                                            <div class="tree-item-name"></div>
+                                        </div>
+                                    
+                                    
+                                    @Html.Raw(ViewBag.html)
+                                    
+                                        
+                                        
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+    </div>
+</div>
+</form>
+<div id="dialog_content" class="dialog_content" style="display: none">
+    <div class="dialogModal_header">添加类别</div>
+  
+    <div class="dialogModal_content">
+    
+            <div class="form-group">
+                <label >父级名称</label>
+                <input type="text" class="form-control"  disabled="disabled"  id="pname" >
+               
+            </div>
+            <div class="form-group">
+                <label>子级名称</label>
+                <input type="text" class="form-control"   id="cname" >
+            </div> 
+    </div>
+      
+        
+    <div class="dialogModal_footer">
+        <button type="button" data-dialogmodalbut="ok">提交</button>
+        <button type="button" data-dialogmodalbut="cancel">取消</button>
+    </div>
+  
+</div>
+<script src="/Content/assets/js/fuelux/treeview/tree-custom.min.js"></script>
+    <script src="/Content/assets/js/fuelux/treeview/treeview-init.js"></script>
+<script src="/Content/alert/popModal.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        UITree.init();
+    });
+    function Save(id) {
+        $.ajax({
+            type: "post",
+            url: "/PCserver/AddTypesSaveAjax",
+            data: {
+                title: $(".open").find("#cname").val(),pid:id
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("添加成功");
+                    location.href = "/PC/Types";
+                }
+                else {
+                    alert("添加失败");
+                }
+            }
+
+        });
+    }
+    function add(id,title)
+    {
+        $('#dialog_content').dialogModal({
+            onOkBut: function () { Save(id) },
+            onCancelBut: function () { },
+            onLoad: function () { },
+            onClose: function () { },
+        });
+        $(".open").find("#pname").val(title);
+        
+    }
+    function deleted(id) {
+        var r = confirm("确定删除？")
+        if (r == true) {
+            $.ajax({
+                type: "post",
+                url: "/Base/Deletes",
+                data: {
+                    va1: id,
+                    va2: "tb_types"
+
+                },
+                success: function (IsSuccess) {
+                    if (IsSuccess == "0") {
+                        location.href = '/PC/Types';
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+
+
+                }
+
+            });
+        }
+    }
+
+</script>
+

@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = "微课编辑";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+<script src="/Content/editor/kindeditor.js" type="text/javascript"></script>
+<script src="/Content/editor/plugins/code/prettify.js"></script>
+ <link href="/Content/uploadify/Upload.css" rel="stylesheet" />
+    
+    <script src="/Content/uploadify/jquery.uploadify.min.js"></script>
+    <script src="/Content/uploadify/UploadimgData.js"> </script>
+<script type="text/javascript">
+    function OnchangeTypeTs() {
+
+        $("#type2").empty();
+        var str = $("#type1").find("option:selected").val();
+        $.ajax({
+            url: "/Base/GetTypeTwo/" + str,
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type2");
+
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+
+
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+    function OnchangeTypeT() {
+        $("#type1").empty();
+        $.ajax({
+            url: "/Base/GetTypeOne",
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type1");
+                $("<option value='0'>请选择</option>").appendTo(oSheng)
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            }
+        });
+    }
+
+    function Save() {
+        if ($("#title").val() == null) {
+            alert("标题不可以为空");
+            return;
+        }
+        if ($("#type2").find("option:selected").val() == null) {
+            alert("微课类别不可以为空");
+            return;
+        }
+
+        var str = "";
+        $(".pic_demo").each(function () {
+            $(this).find(".imgBox").each(function () {
+
+                str += (str == "" ? "" : ",") + "" + $(this).find("img").attr("data-url") + "";
+            });
+        });
+        $.ajax({
+            type: "post",
+            url: "/PCserver/AddvideoSaveAjax",
+            data: {
+                title: $("#title").val(),
+                teacher: $("#teacher").val(),
+                counts: $("#counts").val(),
+                Types: $("#type2").find("option:selected").val(),
+                sumtime: $("#sumtime").val(),
+                introduce: $("#shopintroduce").val(),
+                images: str,
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("添加失败");
+                   
+                }
+                else {
+                    location.href = '/PC/UploadVideo/' + IsSuccess;
+                }
+
+
+            }
+
+        });
+    }
+    $(document).ready(function () {
+        UploadK();
+        OnchangeTypeT();
+    });
+
+
+
+
+</script>
+ <form id="example" >
+    <div class="page-content">
+
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="###">微课编辑</a>
+                </li>
+                <li>
+                    <a href="/PC/About">微课编辑</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="page-header position-relative">
+            <div class="header-title">
+            </div>
+
+            <div class="header-buttons">
+                <a class="sidebar-toggler" href="#">
+                    <i class="fa fa-arrows-h"></i>
+                </a>
+                <a class="refresh" id="refresh-toggler" href="#">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </a>
+                <a class="fullscreen" id="fullscreen-toggler" href="#">
+                    <i class="glyphicon glyphicon-fullscreen"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12" style="width: 100%">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-blue">
+                                    <span class="widget-caption">微课编辑</span>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="registration-form">
+                                      
+                                            <div class="form-title">
+                                                微课编辑（第一步：编辑微课名称。第二步：上传威课视频）
+                                          </div>
+                                         <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="title"  placeholder="标题">
+                                                            </span>
+                                                        </div>
+                                         <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                <input type="text" class="form-control" id="teacher"  placeholder="主讲老师">
+                                                            </span>
+                                                        </div>
+
+                                      
+                                          <div class="row">
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                  <select class="form-control" name="country" id="type1"  onchange="OnchangeTypeTs()" data-bv-field="country">                                                       
+                                                                </select>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                  <select class="form-control" name="country" id="type2"  data-bv-field="country">                                                                         
+                                                                </select>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                           <div class="row">
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                 <input type="text" class="form-control" id="counts"  placeholder="课时">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                           <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                                  <input type="text" class="form-control" id="sumtime"  placeholder="总时长">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                        
+                                     <div class="form-group">
+                                                            <span class="input-icon icon-right">
+                                                               
+                                                                 <textarea name="concents" style="width: 100%; height: 294px; height: 294px;"   placeholder="课程介绍" id="shopintroduce" class="input1"></textarea>
+                                                            </span>
+                                                        </div>
+                                         <hr class="wide" />
+                                            <div class="form-title">
+                                                视频上传(单个视频上传，支持RMVB,AVI,MP4格式)
+                                            </div>
+                                             
+                                            <div class="form-group">
+                                                <span class="input-icon icon-right">
+                                                    <input type="file" class="form-control" name="upload_file" id="upload_file">
+                                                     
+                                                </span>
+                                                 <div id="some_file_queue"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="pic_demo">
+                                                    
+                                                </div>
+                                            </div>                 
+                                         
+                                           
+
+                                            <button type="button" onclick="Save()" class="btn btn-blue">下一步</button>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

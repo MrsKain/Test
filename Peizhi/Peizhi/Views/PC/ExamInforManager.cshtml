@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "题目管理";
+    Layout = "~/Views/Shared/_LayoutSellersB.cshtml";
+}
+
+@using System.Data;
+@using Kain_class.HtmlSubstring;
+<div class="page-content">
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="###">题目管理</a>
+            </li>
+            <li>
+                <a href="/PC/ExamInforManager">题目管理</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="page-header position-relative">
+        <div class="header-title">
+        </div>
+
+        <div class="header-buttons">
+            <a class="sidebar-toggler" href="#">
+                <i class="fa fa-arrows-h"></i>
+            </a>
+            <a class="refresh" id="refresh-toggler" href="">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </a>
+            <a class="fullscreen" id="fullscreen-toggler" href="#">
+                <i class="glyphicon glyphicon-fullscreen"></i>
+            </a>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header ">
+                        <span class="widget-caption">题目管理</span>
+                        <input type="search" class=" input-sm" id="bank" placeholder="题目名称">
+                        <button type="button" onclick="Serach()" class="btn btn-blue">查询</button>
+                        
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="widget-body">
+
+                        <table class="table table-striped table-bordered table-hover" id="simpledatatable">
+                            <thead>
+                                <tr>
+                                   
+                                    <th>题目
+                                    </th>
+                                     <th>A
+                                    </th>
+                                     <th>B
+                                    </th>
+                                     <th>C
+                                    </th>
+                                     <th>D
+                                    </th>
+                                    <th>答案
+                                    </th>
+                                     <th>解析
+                                    </th>
+                                 
+                                    <th>题目类型
+                                    </th>
+                                     <th>学科类别
+                                    </th>
+                                     <th>分数
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    DataTable dt = ViewBag.table as DataTable;
+                                    foreach (DataRow dr in dt.Rows)
+                                    {
+                                     <tr>
+                                       
+                                        <td>@SubstringFunction.ByteSubString(dr["Question"].ToString(), 0, 60, true)
+                                        </td>
+                                          <td>@SubstringFunction.ByteSubString(dr["A"].ToString(), 0, 60, true)
+                                        </td>
+                                           <td>@SubstringFunction.ByteSubString(dr["B"].ToString(), 0, 60, true)
+                                        </td>
+                                           <td>@SubstringFunction.ByteSubString(dr["C"].ToString(), 0, 60, true)
+                                        </td>
+                                           <td>@SubstringFunction.ByteSubString(dr["D"].ToString(), 0, 60, true)
+                                        </td>
+                                           <td>@SubstringFunction.ByteSubString(dr["Answer"].ToString(), 0, 60, true)
+                                        </td>
+                                          <td>@SubstringFunction.ByteSubString(dr["Analysis"].ToString(), 0, 60, true)
+                                        </td>
+                                         
+                                          <td>@dr["titletype"].ToString()
+                                        </td>
+                                          <td>@SubstringFunction.ByteSubString(dr["title"].ToString(), 0, 80, true)
+                                        </td>
+                                           <td>@dr["trades"].ToString()
+                                        </td>
+                                        <td>
+                                            <a href="###" onclick="Deletes(@dr["id"].ToString())" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i>删除</a>  
+                                               <a href="/PC/UpdateExamInfor/@dr["id"].ToString()"  class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i>修改</a>                                                                          
+                                        </td>
+                                    </tr>
+                                    }
+                                    }
+
+                            </tbody>
+                        </table>
+                         <div class="row DTTTFooter">
+                        @{
+                            Html.RenderAction("FenYe", "Base", new { pagesize = 15, recordCount = ViewBag.recordCount, pageIndex = ViewBag.pageindex, pageitem = 2, pageUrl = "/PC/VideoManager", strWhere = ViewBag.ids });
+                        }
+                             </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div> 
+</div>
+<script type="text/javascript">
+    function Serach() {
+
+        location.href = "/PC/ExamInforManager/1/" + $("#bank").val();
+    }
+    function Deletes(obj) {
+        $.ajax({
+            type: "post",
+            url: "/Base/Deletes",
+            data: {
+                va1: obj,
+                va2: "tb_Dataload"
+
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    location.href = '/PC/ExamInforManager';
+                }
+                else {
+                    alert("删除失败");
+                }
+
+
+            }
+
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+

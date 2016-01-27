@@ -1,0 +1,177 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+<!-- 0120样式新增 -->
+<style>
+  .multiple-choice .select-group {
+    padding: 5px 2%;
+    width: 96%;
+    height: 40px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .multiple-choice .select-group select {
+    overflow: hidden;
+    float: left;
+    margin: 5px 2% 5px 0;
+    width: 38%;
+    height: 30px;
+    line-height: 26px;
+    white-space: nowrap;
+    background: url(/Areas/Areas/Content/images/icon_bottom_arrow.png) no-repeat 95% center;
+    -webkit-background-size: auto 8px;
+            background-size: auto 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+            appearance: none;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .multiple-choice .select-group .btn-go {
+    float: right;
+    margin: 5px 0;
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    background-color: #02bc7e;
+    border-radius: 3px;
+  }
+   
+        .hide {
+            display:none;
+        }
+
+</style>
+<!-- js -->
+<script type="text/javascript" src="/Areas/Areas/Content/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/Areas/Areas/Content/js/index.js"></script>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/home/index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 考试 -->
+  <article class="examination">
+    <!-- 选择题 -->
+    <section class="multiple-choice">
+      <div class="select-group">
+        <select id="type1" onchange="OnchangeTypeS()">
+         
+        </select>
+        <select id="type2">
+         
+        </select>
+        <a class="btn-go" href="###" onclick="next(1)">GO</a>
+      </div>
+        <div id="contents">
+     
+      
+            </div>
+    </section>
+  </article>
+  <!-- 考试 END -->
+
+  <div class="clear h50"></div>
+
+
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnchangeType();
+    });
+    function OnchangeType() {
+        $.ajax({
+            url: "/Areas/Home/Gettypes",
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type1")
+                $("<option value='0'>请选择</option>").appendTo(oSheng)
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+    function OnchangeTypeS() {
+        $("#type2").empty();
+        var id = $("#type1").find("option:selected").val()
+        $.ajax({
+            url: "/Areas/Home/Getsubject/" + id,
+            type: "post",
+            dataType: "json",
+            data: {
+
+            },
+
+            success: function (data) {
+                var jsonObj = data; // $.parseJSON(data.ReturnValue);
+
+                var oSheng = $("#type2")
+                for (var i = 0; i < jsonObj.length; i++) {
+                    $("<option value='" + jsonObj[i].id + "'>" + jsonObj[i].title + "</option>").appendTo(oSheng)//动态添加Option子项
+                }
+                jsonObj = null;
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+  
+    function next(counts) {
+        $.ajax({
+            type: "post",
+            url: "/Areas/Exam/Question/" + counts,
+            data: {
+                Examtype: $("#type2").find("option:selected").val()
+            },
+            success: function (sc) {
+                $("#contents").empty();
+                $("#contents").append(sc);
+            }
+
+        });
+    }
+    function answer(obj) {
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+        $(obj).parent().next().next().removeClass("hide");
+    }
+</script>

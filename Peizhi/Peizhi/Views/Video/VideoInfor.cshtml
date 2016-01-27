@@ -1,0 +1,225 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <!--网页左上角小图标-->
+    <link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>易考网</title>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="/Content/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/main.css">
+    <!-- js -->
+    <script type="text/javascript" src="/Content/js/jquery-1.11.3.min.js"></script>
+</head>
+<body class="bgc_fa">
+    <script type="text/javascript">
+        function gotop() {
+            $("html,body").animate({ scrollTop: 0 }, 400);
+        }
+    </script>
+
+    <!-- 顶部 -->
+  @{
+       Html.RenderAction("HeadPart", "Base", new { id = 5});
+         }
+    <!-- 顶部导航 END -->
+
+    <!-- 侧边悬浮框 -->
+   @{
+       Html.RenderAction("Bmzx", "Base");
+         }
+    <!-- 侧边悬浮框END -->
+
+    <!-- 课程详情 -->
+    <div class="course_details">
+        <div class="top">
+            <div class="left">
+                <img src="/Content/UploadFiles/images/@ViewBag.image" alt="培知教育" width="348px" height="232px" />
+            </div>
+            <div class="right">
+                <p class="p1">@ViewBag.title</p>
+                <p class="p2">
+                    <strong><span>金牌会员免费观看</span></strong>
+                </p>
+                <ul>
+                    <li class="li1">
+                        <div class="dv1">课时数</div>
+                        <div class="dv2"><span>@ViewBag.counts</span> 课时</div>
+                    </li>
+                    <li class="li2">
+                        <div class="dv1">总时长</div>
+                        <div class="dv2"><span>@ViewBag.sumtime</span> 分钟</div>
+                    </li>
+                    <li class="li3">
+                        <div class="dv1">主讲老师</div>
+                        <div class="dv2"><span>@ViewBag.teacher</span></div>
+                    </li>
+                </ul>
+                <p class="p3">
+                    <a class="a1" href="###" onclick="enroll()">报名</a>
+                   
+                </p>
+            </div>
+            <div class="clear"></div>
+            <div class="share">
+              
+                <!-- JiaThis Button BEGIN -->
+                <div class="jiathis_style">
+                    <span class="jiathis_txt">分享给朋友：</span>
+                    <a class="jiathis_button_qzone"></a>
+                    <a class="jiathis_button_tsina"></a>
+                    <a class="jiathis_button_tqq"></a>
+                    <a class="jiathis_button_weixin"></a>
+                </div>
+                <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                <!-- JiaThis Button END -->
+            </div>
+        </div>
+
+        <!-- 课程列表 -->
+        <div class="lesson_lists">
+            <div class="title">课程列表：</div>
+            <ul>
+               
+                @{
+                    DataTable dt = ViewBag.table as DataTable;
+                    foreach(DataRow dr in dt.Rows)
+                    {
+                     <li>
+                    <span>@dr["title"].ToString()</span>
+                    <a href="/Video/VideoPlay/@dr["id"].ToString()">播放</a>
+                </li>
+                    }
+                    }
+            </ul>
+        </div>
+
+        <!-- 课程介绍 -->
+        <div class="lesson_intro">
+            <div class="title">课程介绍：</div>
+            <div class="meg_text">@ViewBag.introduce</div>
+        </div>
+
+        <!-- 评论 -->
+        <div class="lesson_comment">
+            <form>
+                <div class="title">评论：</div>
+                <textarea id="Comment"></textarea>
+                <div class="btn_issue">
+                    <input type="button" onclick="Comments('@ViewBag.ids')" value="发表评论" />
+                </div>
+               
+              
+                  
+              
+                
+                <!-- 评论信息 -->
+             @{
+                 DataTable dts = ViewBag.Comment as DataTable;
+                 foreach(DataRow dr in dts.Rows)
+                 {
+                 <div class="comment_msg">
+                    <div class="head_img">
+                        <img src="/Content/UploadFiles/images/@dr["image"].ToString()" alt="头像" />
+                    </div>
+                    <div class="message">
+                        <p class="p1">
+                            <span class="sp1">@dr["Bank"].ToString()</span>
+                            <span class="sp2">@dr["Add_Date"].ToString()</span>
+                        </p>
+                        <p class="p2">
+                            @dr["Comment"].ToString()
+                        </p>
+                    </div>
+                </div>
+                 }
+                 
+                 }
+             
+            </form>
+        </div>
+    </div>
+    <!-- 课程详情 END -->
+
+    <!-- 底部 -->
+   @{
+       Html.RenderAction("Foot", "Base");
+         }
+    <!-- 底部 END -->
+    <div id="pop_up_bg"></div>
+  <div id="pop_up_content">
+    <div class="title">确定报名该课程吗？</div>
+    <div class="info">
+      <div class="img">
+        <a href="#">
+          <img src="/Content/UploadFiles/images/@ViewBag.image"  width="170px" height="104px" alt="培知教育" id="image" />
+        </a>
+      </div>
+      <div class="middle">
+        <p class="p1"><a href="#" id="title">@ViewBag.title</a></p>
+        <p class="p2" id="introduce">@ViewBag.introduce</p>
+      </div>
+    </div>
+    <!-- 注意事项 -->
+    <div class="precautions">
+      <div class="h5"><span>*</span>注意事项</div>
+      <p>1. 联系客服，通过支付宝、微信、银行卡等转账到指定账户</p>
+      <p>2. 客服确认收到款项后，即报名成功</p>
+    </div>
+    <div class="price">
+      本课程共：<strong></strong><span id="counts">@ViewBag.counts</span>课时
+    </div>
+    <div class="btn_group">
+      <a class="a1 active" href="###" onclick="Save()">确定</a>
+      <a class="a2" href="###" onclick="Cancel()">取消</a>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+    function enroll() {
+
+     
+
+        $("#pop_up_bg").show();
+        $("#pop_up_content").show();
+    }
+    function Save() {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+    }
+    function Cancel() {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+    }
+    function Comments(id)
+    {
+        $.ajax({
+            type: "post",
+            url: "/Video/AddCommentAjax",
+            data: {
+                id: id,
+                Comment:$("#Comment").val()
+               
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("评论成功");
+                    location.href = '/Video/Videoinfor/'+id;
+                }
+                else {
+                    alert("评论失败");
+
+                }
+
+
+            }
+
+        });
+    }
+</script>

@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Content/css/main.css"/>
+</head>
+<body class="bgc_fa">
+
+  <!-- 顶部 -->
+  <div class="index_header">
+    <div class="header">
+      <a class="logo" href="/Home/Index">
+        <!-- logo尺寸 410*90 -->
+        <img src="/Content/images/index_logo.png" alt="培知教育" />
+      </a>
+      <div class="ask_login">
+        没有易考网账户？ <a href="/login/regist">立即注册</a>
+      </div>
+    </div>
+  </div>
+  <!-- 顶部 END -->
+
+  <!-- 登录 -->
+  <div class="login">
+    <img class="bg" src="/Content/images/bg_login_1.png" alt="" />
+    <div class="login_form">
+      <form>
+        <div class="title">登录易考网</div>
+        <input class="text_ipt" type="text" id="txtName"   placeholder="输入手机号码" />
+       
+        <input class="text_ipt" type="password" id="txtPwd" placeholder="输入密码" />
+        
+        <div class="remeber">
+          <div class="left">
+            <input type="checkbox" /> 自动登录
+          </div>
+          <a href="/login/PasswordBack">忘记密码？</a>
+        </div>
+        <input class="btn_login" type="button" onclick="LoginVerify()" value="登 录" />
+      </form>
+    </div>
+  </div>
+  <!-- 登录 END -->
+
+  <div class="clear h80"></div>
+
+  <!-- 底部 -->
+   @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+        function LoginVerify() {
+            var txtName = $("#txtName").val();
+            var txtPwd = $("#txtPwd").val();
+            if (txtName == "") {
+
+                $("#txtName").attr("placeholder", "用户名不可以为空");
+                $('#txtName').css({
+                    'border-color': 'red'
+                });
+            }
+            else if (txtPwd == "") {
+                $("#txtPwd").attr("placeholder", "密码不可以为空");
+                $('#txtPwd').css({
+                    'border-color': 'red'
+                });
+            }
+            else {
+                $.ajax({
+                    type: "post",
+                    url: "/Login/LoginActionUser",
+                    data: {
+                        va1: txtName,
+                        va2: txtPwd
+                    },
+                    success: function (IsSuccess) {
+                        if (IsSuccess == "0") {
+                            location.href = '/Home/Index';
+                        }
+                        else {
+                            $("#txtPwd").val("");
+                            $('#txtPwd').css({
+                                'border-color': 'red'
+                            });
+                            $("#txtPwd").attr("placeholder", "登录名或密码错误");
+                        }
+
+
+                    }
+
+                });
+
+            }
+        }
+        $().ready(function () {
+            $("#txtPwd").keydown(function () {
+
+                if (event.keyCode == 13) {
+                    LoginVerify();
+                }
+            });
+        });
+    </script>

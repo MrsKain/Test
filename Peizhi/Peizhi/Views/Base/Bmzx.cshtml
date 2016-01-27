@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="aside">
+    <div class="phone_num">
+      <p class="p1">报名咨询</p>
+      <p>@ViewBag.Tel</p>
+    </div>
+    <!-- 在线咨询 -->
+    <div class="ol_consult">
+      <a class="a1" href="http://wpa.qq.com/msgrd?v=3&uin=@ViewBag.QQone&site=qq&menu=yes" target="_blank" title="在线咨询"></a>
+      <a class="a2" href="http://wpa.qq.com/msgrd?v=3&uin=@ViewBag.QQtwo&site=qq&menu=yes" target="_blank" title="在线咨询"></a>
+      <img src="/Content/UploadFiles/images/@ViewBag.Img" alt="二维码" />
+      <a class="a3" href="javascript:gotop();">TOP</a>
+    </div>
+  </div>

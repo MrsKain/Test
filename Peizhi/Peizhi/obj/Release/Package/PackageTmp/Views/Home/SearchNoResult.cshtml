@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/content/css/main.css"/>
+<style>
+  .search_result {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 1200px;
+    min-height: 630px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .search_result .title {
+    width: 100%;
+    line-height: 35px;
+    font-size: 18px;
+  }
+  .search_result .title span {color: #e90202;}
+
+  #infr_ul {
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  #infr_ul li {
+    float: left;
+    width: 120px;
+    height: 40px;
+  }
+  #infr_ul li a {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  #infr_ul li.active a {
+    color: #02bc7e;
+    border-bottom: 2px solid #02bc7e;
+  }
+
+  /*结果列表*/
+  #infr_ol {margin: 30px auto;}
+  #infr_ol li {display: none;}
+  #infr_ol li .search_lists {
+    overflow: hidden;
+    padding: 5px 0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    border-bottom: 1px dotted #ddd;
+  }
+  #infr_ol li .search_lists span {color: #02bc7e;}
+
+  /*未搜索到结果*/
+  .search_result .no_search {
+    margin-top: 80px;
+    width: 100%;
+    text-align: center;
+  }
+  .search_result .no_search .tips {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #02bc7e;
+  }
+</style>
+</head>
+<body class="bgc_fa">
+  <!-- 顶部 -->
+   @{
+      Html.RenderAction("HeadPart", "Base", new { id = 1});
+         }
+  <!-- 顶部导航 END -->
+
+  <!-- 搜索结果 -->
+  <div class="search_result">
+    <div class="title">共搜到以下关于<span>“关键词”</span>的内容</div>
+    <!-- 未搜索到结果 -->
+    <div class="no_search">
+      <img src="/Content/images/incon_no_search.png" alt="未搜索到" />
+      <div class="tips">Sorrry,您想要的东西没有了，稍后再试试吧。。</div>
+    </div>
+  </div>
+  <!-- 搜索结果 END -->
+
+  <!-- 底部 -->
+  @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>

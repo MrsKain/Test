@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<div class="index_header">
+    <div class="header">
+      <a class="logo" href="/Home/Index">
+        <!-- logo尺寸 410*90 -->
+        <img src="/Content/images/index_logo.png" alt="培知教育" />
+      </a>
+      <!-- 登录之后样式 -->
+      <div class="user_name">
+        亲爱的会员，您好！欢迎光临易考网
+        <a class="names" href="/Member/memberexam">@ViewBag.bank</a>
+        <a class="btn_quit" href="/Login/ExtOutAction">[退出]</a>
+      </div>
+      <div class="search">
+        <input type="text" id="searchvalue" />
+        <a href="###" onclick="Searchs()"></a>
+      </div>
+      <div class="login_box">
+        <a class="active" href="/Login/Login">登录</a>
+        <a href="/Login/regist">注册</a>
+      </div>
+    </div>
+  </div>
+<div class="index_top_nav">
+    <ul id="headnav">
+      <li><a href="/Home/index">网站首页</a></li>
+      <li><a href="/Video/Videolist">微课中心</a></li>
+      <li><a href="/Exam/ExamIndex">考试中心</a></li>
+      <li><a href="/Home/Dataload">资料下载</a></li>
+      <li><a href="/Home/Newslist">新闻资讯</a></li>
+      <li><a href="/Home/Authentication">认证中心</a></li>
+      <li class="active"><a href="/Home/About">关于我们</a></li>
+    </ul>
+  </div>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#headnav").children().removeClass("active");
+        $("#headnav li:nth-child(@ViewBag.ids)").addClass("active");
+        if ('@ViewBag.uid' == null || '@ViewBag.uid' == '') {
+            $(".user_name").attr("style","display:none;")
+        }
+        else {
+            $(".login_box").attr("style", "display:none;")
+        }
+    });
+    function Searchs()
+    {
+        var svalue = $("#searchvalue").val()
+        if (svalue == null)
+        {
+            return;
+        }
+        location.href = "/Home/SearchResult/" + svalue;
+    }
+</script>

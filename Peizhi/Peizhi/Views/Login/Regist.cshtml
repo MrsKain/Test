@@ -1,0 +1,188 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Content/css/main.css"/>
+    <style type="text/css">
+body,a{ font-size:14px; color:#666;}
+ul,li{ margin:0; padding:0; list-style:none}
+.fn-vhid{ visibility:hidden;}
+.fn-tinput{ width:240px; height:30px; line-height:30px; border:#ddd solid 1px; background-color:transparent; padding:0 6px;}
+textarea {border:#ddd solid 1px; background-color:transparent; width:60%}
+.fn-tinput:focus,textarea:focus{ border-color:#c00;}
+.bl-form label{ float:left; width:100px; text-align:right; padding-top:6px;}
+.bl-form .controls label{ width:auto;}
+.bl-form li{ margin-top:20px; overflow:hidden;}
+em{ color:#C00;}
+.error{color:#C00; padding:0 6px;
+	margin-top: -15px;
+	width: 100%;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+    float:left;
+}
+</style>
+</head>
+<body class="bgc_fa">
+
+  <!-- 顶部 -->
+  <div class="index_header">
+    <div class="header">
+      <a class="logo" href="/home/index">
+        <!-- logo尺寸 410*90 -->
+        <img src="/Content/images/index_logo.png" alt="揽光科技" />
+      </a>
+      <div class="ask_login">
+        已有易考网账户？ <a href="/login/login">立即登录</a>
+      </div>
+    </div>
+  </div>
+  <!-- 顶部 END -->
+
+  <!-- 注册 -->
+  <div class="login">
+    <img class="bg" src="/Content/images/bg_login_1.png" alt="" />
+    <div class="regist_form">
+      <form  id="jsForm">
+        <div class="title">注册易考网</div>
+        <div class="inp_box">
+          <label><span>*</span>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+          <input class="text" type="text" id="tel" maxlength="11" />
+        </div>
+      <div class="inp_box secur_code ">
+          <label><span>*</span>验  证  码：</label>
+          <input class="text" id="yzm" onchange="VYzm()" type="text" />
+          <input class="btn_send_code" type="button" onclick="Yzm()" value="获取验证码" />
+        </div>
+        <div class="inp_box">
+          <label><span>*</span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+          <input class="text" id="UserName" type="text" />
+        </div>
+      
+        <div class="inp_box">
+          <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+          <input class="radio" name="sex" value="男" checked="checked" type="radio" /> <strong>男</strong>
+          <input class="radio ip2" name="sex"  value="女" type="radio" /> <strong>女</strong>
+        </div>
+       
+        <div class="inp_box">
+          <label><span>*</span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+          <input class="text" id="PassWord" type="password"  />
+        
+        </div>
+        
+        <div class="inp_box">
+          <label><span>*</span>重复密码：</label>
+          <input class="text" id="OldPassWord" onchange="Vpassword()" type="password" />
+        </div>
+       
+        <div class="inp_box">
+          <label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+          <input class="text" id="Email" type="text" />
+        </div>
+      
+        
+     
+        
+      
+        <input class="btn_login" style="background-color:#666" id="regist" type="button"  value="注 册" />
+        <div class="provision">
+          <input type="checkbox"  checked="checked" /> 我已阅读并同意<a href="#">《易考网服务条款》</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- 注册 END -->
+
+  <!-- 底部 -->
+   @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>
+<script type="text/javascript" src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="/Content/js/jquery.validate.js"></script>
+<script type="text/javascript">
+  
+    function Save()
+    {
+        var sex = $("input[name='sex']:checked").val()
+       
+        $.ajax({
+            type: "post",
+            url: "/Login/RegistAjax",
+            data: { bank:$("#UserName").val(), sex: sex, PassWord: $("#PassWord").val(), Email: $("#Email").val(), tel: $("#tel").val() },
+            success: function (IsSuccess) {
+              
+                if (IsSuccess == "0") {
+                    location.href = "/Login/Login";
+                }
+                else {
+                    alert("账户已经注册过了!");
+                }
+
+            }
+
+        });
+    }
+
+    function Yzm()
+    {
+        $.ajax({
+            type: "post",
+            url: "/Login/TelYzm",
+            data: { tel: $("#tel").val() },
+            success: function (IsSuccess) {
+                alert("发送成功！");
+
+            }
+
+        });
+    }
+  
+
+    function VYzm() {
+        $.ajax({
+            type: "post",
+            url: "/Login/YzmAjax",
+            data: { yzm: $("#yzm").val() },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                  
+                }
+                else
+                {
+                    alert("验证码输入错误！");
+                }
+
+            }
+
+        });
+    }
+
+    function Vpassword()
+    {
+        if ($("#PassWord").val()!=$("#OldPassWord").val()) {
+            alert("两次密码不相同!");
+            return;
+        }
+        else {
+            $("#regist").removeAttr("style");
+            $("#regist").attr("onclick", "Save()");
+        }
+    }
+</script>

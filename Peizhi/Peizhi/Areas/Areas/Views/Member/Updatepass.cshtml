@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="bgc-fa">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="copyright" content="" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Areas/Content/css/main.css"/>
+</head>
+<body class="bgc-fa">
+
+  <!-- 头部 -->
+  <header class="login-header">
+    <a class="logo-img" href="/Areas/Home/Index">
+      <img src="/Areas/Areas/Content/images/index_logo.png" alt="培知教育">
+    </a>
+  </header>
+  <!-- 头部 END -->
+
+  <!-- 登录 -->
+  <article class="login-form">
+    <form>
+      <div class="title">修改密码</div>
+      <div class="ipt-text">
+        <input type="password" id="pass" placeholder="原密码"> 
+      </div>
+      <div class="ipt-text">
+        <input type="password" id="newp" placeholder="新密码"> 
+      </div>
+      <div class="ipt-text">
+        <input type="password" id="againp" placeholder="确认新密码">
+      </div>
+      <input class="btn-login" type="button" onclick="Save()" value="保 存">
+    </form>
+  </article>  
+  <!-- 登录 END -->
+
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    function Save() {
+        if ($("#newp").val() != $("#againp").val())
+        {
+            alert("两次密码不一样");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/Areas/Member/PassAjax",
+            data: {
+                newp: $("#newp").val(),
+                pass: $("#pass").val()
+            },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    alert("修改成功");
+                    location.href = "/Areas/login/login";
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+
+        });
+    }
+</script>

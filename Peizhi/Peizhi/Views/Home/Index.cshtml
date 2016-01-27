@@ -1,0 +1,358 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+@using Kain_class.HtmlSubstring;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<meta name="Keywords" content="培知教育，成人高考，自考，普通话，教师资格证，教育培训"/>
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/Content/css/main.css"/>
+<!-- js -->
+<script type="text/javascript" src="/Content/js/jquery-1.11.3.min.js"></script>
+
+</head>
+<body>
+  
+     <script type="text/javascript">
+         function gotop() {
+             $("html,body").animate({ scrollTop: 0 }, 400);
+         }
+  </script>
+
+  <!-- 顶部 -->
+  
+  <!-- 顶部 END -->
+
+  <!-- 顶部导航 -->
+  @{
+       Html.RenderAction("HeadPart", "Base", new { id = 1});
+         }
+  <!-- 顶部导航 END -->
+
+  <!-- 侧边悬浮框 -->
+    @{
+       Html.RenderAction("Bmzx", "Base");
+         }
+  <!-- 侧边悬浮框END -->
+
+  <!-- banner -->
+  <div id="slidebox" class="index_banner">
+    <!--banner点-->
+    <div class="hd">
+        <ul>
+             @{
+        DataTable dtt = ViewBag.table5 as DataTable;
+        foreach(DataRow dr in dtt.Rows)
+        {
+        <li></li>
+        }
+        }
+
+        </ul>
+    </div>
+    
+    <div class="bd">
+      <ul><!-- banner图片 1920*456 -->
+            @{
+        DataTable dtc = ViewBag.table5 as DataTable;
+        foreach (DataRow drc in dtc.Rows)
+        {
+        <li style="display: list-item;">
+          <a href="#">
+            <img src="/Content/UploadFiles/images/@drc["imageurl"].ToString()" width="1920px" height="456px" alt="Banner">
+          </a>
+        </li>
+        }
+        }
+      </ul>
+    </div>
+
+  
+    
+  </div>
+  
+  <!-- banner END -->
+
+  <div class="clear"></div>
+
+  <!-- 内容 -->
+  <div class="index_content">
+    <!-- 微课中心 -->
+    <div class="class_center">
+      <div class="heading_group">
+        <div class="title">微课中心</div>
+        <div class="listen">试听报名</div>
+        <a class="target_more" href="/Video/Videolist">+ MORE</a>
+      </div>
+      <div class="scoll_content">
+        <a class="arrow prev" href="#"></a>
+        <!-- 内容 -->
+        
+        <!-- 内容 -->
+          @{
+              DataTable dt = ViewBag.table1 as DataTable;
+              foreach(DataRow dr in dt.Rows)
+              {
+              <div class="content">
+          <img src="/Content/UploadFiles/images/@dr["images"].ToString()" alt="微课中心" />
+          <div class="div1">
+            <span>@SubstringFunction.ByteSubString(dr["title"].ToString(), 0, 12, true)</span>
+            <a href="/video/videoinfor/@dr["id"].ToString()">开始学习</a>
+          </div>
+          <div class="div2">@SubstringFunction.ByteSubString(dr["introduce"].ToString(), 0, 80, true)</div>
+        </div>
+              }
+              }
+        <a class="arrow next" href="#"></a>
+      </div>     
+    </div>
+    <!-- 最新动态 -->
+    <div class="latest_news">
+      <div class="heading_group">
+        <div class="title">最新动态</div>
+        <a class="target_more" href="/Home/Newslist">+ MORE</a>
+      </div>
+      <div class="news_list">
+        
+          @{
+              DataTable dt2 = ViewBag.table2 as DataTable;
+              var i = 1;
+              foreach(DataRow dr in dt2.Rows)
+              {
+                  if(i==1)
+                  {
+                  <div class="first">
+          <div class="line">
+            <div class="left"><a href="/Home/Newsinfor/@dr["id"].ToString()">@dr["title"].ToString()</a></div>
+            <div class="right">@dr["Add_Date"].ToString()</div>
+          </div>
+          <div class="content">@SubstringFunction.ByteSubString(dr["Contents"].ToString(), 0, 110, true)</div>
+        </div>
+                  }
+                  else if (i == 6)
+                  {
+                    <div class="div last">
+          <div class="left"><a href="/Home/Newsinfor/@dr["id"].ToString()">@dr["title"].ToString()</a></div>
+          <div class="right">@dr["Add_Date"].ToString()</div>
+        </div>
+              
+                  }
+                  else
+                  { 
+                <div class="div">
+          <div class="left"><a href="/Home/Newsinfor/@dr["id"].ToString()">@dr["title"].ToString()</a></div>
+          <div class="right">@dr["Add_Date"].ToString()</div>
+        </div>
+                  }
+                  i++;
+              }
+            
+              }
+      </div>
+    </div>
+       <div class="clear"></div>
+
+    <!-- 考试中心 -->
+    <div class="exam_center">
+      <div class="box">
+      <div class="headline">
+        <div class="title">考试中心</div>
+        <ul id="hd_ul">
+          <li  onclick="exam(1,this)">教师资格</li>
+          <li  onclick="exam(3,this)">成人高考</li>
+          <li  onclick="exam(2,this)">普通话</li>
+          <li class="active" onclick="exam(4,this)">自考课程</li>
+        </ul>
+      </div>
+      <ol id="hd_ol">
+        <!-- 教师资格 -->
+        <li id="exams">
+            @{
+                DataTable dt3 = ViewBag.table3 as DataTable;
+                var t = 1;
+                foreach(DataRow dr in dt3.Rows)
+                {
+                if(t==7)
+                {
+                <div class="lists last">
+            <div class="left">@dr["title"].ToString()</div>
+            <a class="right" href="/Exam/ExamInfor/@dr["id"].ToString()">考试</a>
+          </div>
+                }
+                else
+                {
+                <div class="lists">
+            <div class="left">@dr["title"].ToString()</div>
+            <a class="right" href="/Exam/ExamInfor/@dr["id"].ToString()">考试</a>
+          </div>
+                }
+                    t++;
+                }
+              
+                }
+        </li>
+      </ol>
+    </div>
+    <a class="target_more" href="/Exam/ExamIndex">+ MORE</a>
+  </div>
+  <!-- 上线课程 -->
+  <div class="ol_lession">
+    <div class="box">
+      <div class="headline">
+        <div class="title">上线课程</div>
+        <ul id="ls_ul">
+          <li onclick="video(1,this)">教师资格</li>
+          <li onclick="video(3,this)">成人高考</li>
+          <li onclick="video(2,this)">普通话</li>
+          <li class="active" onclick="video(4,this)">自考课程</li>
+        </ul>
+      </div>
+      <ol id="ls_ol">
+        <!-- 教师资格 -->
+        <li id="videos">
+            @{
+          DataTable dt4 = ViewBag.table4 as DataTable;
+          int y = 1;
+          foreach(DataRow dr in dt4.Rows)
+          {
+          if(y==7)
+          {
+            <div class="lists">
+            <div class="left">@dr["title"].ToString()</div>
+            <div class="middle">
+             @* <strong>￥<span>@dr["price"].ToString()</span></strong> /<span>@dr["counts"].ToString()</span>课时*@
+            </div>
+            <div class="right">
+              <a class="a1" href="###" onclick="enroll('@dr["title"].ToString()','@dr["introduce"].ToString()')" >报名</a>
+              <a class="a2" href="/Video/Videoinfor/@dr["id"].ToString()">试看</a>
+              <a class="a3" href="/Video/Videoinfor/@dr["id"].ToString()">学习</a>
+            </div>
+          </div>  
+          }
+          else
+          {
+<div class="lists last">
+            <div class="left">@dr["title"].ToString()</div>
+            <div class="middle">
+             @* <strong>￥<span>@dr["price"].ToString()</span></strong> /<span>@dr["counts"].ToString()</span>课时*@
+            </div>
+            <div class="right">
+              <a class="a1" href="###" onclick="enroll('@dr["title"].ToString()','@dr["introduce"].ToString()')">报名</a>
+              <a class="a2" href="/Video/Videoinfor/@dr["id"].ToString()">试看</a>
+              <a class="a3" href="/Video/Videoinfor/@dr["id"].ToString()">学习</a>
+            </div>
+          </div>
+          }
+              y++;
+          }
+          }
+        </li>
+      </ol>
+    </div>
+    <a class="target_more" href="/Video/VideoList">+ MORE</a>
+  </div>
+      
+  </div>
+  <!-- 内容 END -->
+
+  <!-- 底部 -->
+   @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+     <div id="pop_up_bg"></div>
+  <div id="pop_up_content" style="margin-top:30%;">
+    <div class="title">确定报名该课程吗？</div>
+    <div class="info">
+      <div class="img">
+        <a href="#">
+          <img src="/Content/images/qrcode_aside.png"  width="170px" height="104px" alt="培知教育" id="image" />
+        </a>
+      </div>
+      <div class="middle">
+        <p class="p1"><a href="#" id="title"></a></p>
+        <p class="p2" id="introduce"></p>
+      </div>
+    </div>
+    <!-- 注意事项 -->
+    <div class="precautions">
+      <div class="h5"><span>*</span>注意事项</div>
+      <p>1. 联系客服，通过支付宝、微信、银行卡等转账到指定账户</p>
+      <p>2. 客服确认收到款项后，即报名成功</p>
+    </div>
+    <div class="price">
+     
+    </div>
+    <div class="btn_group">
+      <a class="a1 active" href="###" onclick="Save()">确定</a>
+      <a class="a2" href="###" onclick="Cancel()">取消</a>
+    </div>
+  </div>
+</body>
+
+     
+</html>
+<script type="text/javascript" src="/Content/js/jquery.SuperSlide.2.1.1.js"></script>
+ <script type="text/javascript">
+     jQuery("#slidebox").slide({ mainCell: ".bd ul", autoPlay: true });
+     function enroll(title, introduce) {
+        
+         $("#title").text(title);
+         $("#introduce").text(introduce);
+         $("#pop_up_bg").show();
+         $("#pop_up_content").show();
+     }
+     function Save() {
+         $("#pop_up_bg").hide();
+         $("#pop_up_content").hide();
+        
+     }
+     function Cancel() {
+         $("#pop_up_bg").hide();
+         $("#pop_up_content").hide();
+       
+     }
+     function exam(id,obj)
+     {
+         $(obj).siblings().removeClass("active");
+         $(obj).addClass("active");
+         $.ajax({
+             type: "post",
+             url: "/HomeServer/Exam",
+             data: { id: id },
+             success: function (sc) {
+
+                 $("#exams").empty()
+                 $("#exams").append(sc);
+
+             }
+
+         });
+     }
+     function video(id,obj)
+     {
+         $(obj).siblings().removeClass("active");
+         $(obj).addClass("active");
+         $.ajax({
+             type: "post",
+             url: "/HomeServer/Video",
+             data: { id: id},
+             success: function (IsSuccess) {
+
+                 $("#videos").empty()
+                 $("#videos").append(IsSuccess);
+
+             }
+
+         });
+     }
+  </script>

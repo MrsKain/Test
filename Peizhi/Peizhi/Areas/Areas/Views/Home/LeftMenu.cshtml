@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<ul id="tab-ul-1">
+      
+     
+    @{
+        DataTable dt = ViewBag.table as DataTable;
+      
+        foreach(DataRow dr in dt.Rows)
+        {
+      
+        <li name="@dr["id"].ToString()" onclick="search(@dr["id"].ToString())"><a href="###" >@dr["title"].ToString()</a></li>
+     
+        }
+        }
+    </ul>

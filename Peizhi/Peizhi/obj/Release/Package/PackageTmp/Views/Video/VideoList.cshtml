@@ -1,0 +1,175 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+@using Kain_class.HtmlSubstring;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>易考网</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css">
+<link rel="stylesheet" type="text/css" href="/Content/css/main.css">
+<!-- js -->
+<script type="text/javascript" src="/Content/js/jquery-1.11.3.min.js"></script>
+</head>
+<body class="bgc_fa">
+  <script type="text/javascript">
+      function gotop() {
+          $("html,body").animate({ scrollTop: 0 }, 400);
+      }
+  </script>
+
+  <!-- 弹窗 -->
+  <div id="pop_up_bg"></div>
+  <div id="pop_up_content">
+    <div class="title">确定报名该课程吗？</div>
+    <div class="info">
+      <div class="img">
+        <a href="#">
+          <img src="/Content/images/class_lesson_pic_1.png"  width="170px" height="104px" alt="培知教育" id="image" />
+        </a>
+      </div>
+      <div class="middle">
+        <p class="p1"><a href="#" id="title">高一全科全年套餐</a></p>
+        <p class="p2" id="introduce">升到高一了，新环境、新课程，怎样有一个全新的开端？能不能凭借初中的学习技巧，应对高中的学习挑战？本套餐根据各学科特点，囊括高一年级全年全科精品课，为高一学生量身打造全年学习方案...</p>
+      </div>
+    </div>
+    <!-- 注意事项 -->
+    <div class="precautions">
+      <div class="h5"><span>*</span>注意事项</div>
+      <p>1. 联系客服，通过支付宝、微信、银行卡等转账到指定账户</p>
+      <p>2. 客服确认收到款项后，即报名成功</p>
+    </div>
+    <div class="price">
+      本课程共：<strong></strong><span id="counts"></span>课时
+    </div>
+    <div class="btn_group">
+      <a class="a1 active" href="###" onclick="Save()">确定</a>
+      <a class="a2" href="###" onclick="Cancel()">取消</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+  
+  </script>
+  <!-- 弹窗 END -->
+
+  <!-- 顶部 -->
+  
+  @{
+      Html.RenderAction("HeadPart", "Base", new { id = 2});
+         }
+  
+  <!-- 顶部导航 END -->
+
+  <!-- 侧边悬浮框 -->
+  @{
+       Html.RenderAction("Bmzx", "Base");
+         }
+  <!-- 侧边悬浮框END -->
+
+  <!-- 微课中心 -->
+  <div class="l_class_center">
+    <!-- 筛选列表 -->
+      @{
+        Html.RenderAction("MenuPart", "Base");
+    }
+    <!-- 推荐课程 -->
+    <div class="recom_courses">
+      <div class="title">推荐课程</div>
+      <div class="lesson_list">
+        <!-- 课程列表 -->
+        
+      
+          @{
+              DataTable dt = ViewBag.table as DataTable;
+              foreach (DataRow dr in dt.Rows)
+              {
+        <div class="lesson">
+          <div class="img">
+            <a href="#">
+              <img src="/Content/UploadFiles/images/@dr["images"].ToString()" width="170px" height="104px" alt="培知教育" />
+            </a>
+          </div>
+          <div class="middle">
+            <p class="p1"><a href="/video/Videoinfor/@dr["id"].ToString()">@dr["title"].ToString()</a></p>
+            <p class="p2">@SubstringFunction.ByteSubString(dr["introduce"].ToString(), 0, 110, true) </p>
+          </div>
+          <div class="right">
+            <p class="money">
+              <strong><span>金牌会员免费观看</span></strong> /<span>@dr["counts"].ToString()</span>课时
+               
+            </p>
+            <p class="select">
+              <a class="a1" href="###" onclick="enroll('@dr["images"].ToString()','@dr["title"].ToString()','@SubstringFunction.ByteSubString(dr["introduce"].ToString(), 0, 110, true)','@dr["counts"].ToString()')">报名</a>
+              <a class="a2" href="/video/Videoinfor/@dr["id"].ToString()">试看</a>
+              <a class="a3" href="/video/Videoinfor/@dr["id"].ToString()">学习</a>
+            </p>
+          </div>
+        </div>
+              }
+           }
+        <!-- 页码 -->
+          <div style="margin-bottom:10px;">
+         @{
+             Html.RenderAction("FenYe", "Base", new { pagesize = 8, recordCount = ViewBag.recordCount, pageIndex = ViewBag.pageindex, pageitem = 2, pageUrl = "/Home/DataLoad", strWhere = ViewBag.ids });
+                        }
+              </div>
+      </div>
+    </div>
+  </div>
+  <!-- 微课中心 END -->
+
+  <!-- 底部 -->
+   @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>
+<script type="text/javascript">
+    function enroll(image, title, introduce, counts)
+    {
+       
+        $("#title").empty();
+        $("#introduce").empty();
+        $("#counts").empty();
+
+        $("#image").attr("src", "/Content/UploadFiles/images/"+image);
+        $("#title").text(title);
+        $("#introduce").text(introduce);
+        $("#counts").text(counts);
+
+        $("#pop_up_bg").show();
+        $("#pop_up_content").show();
+    }
+    function Save()
+    {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+    }
+    function Cancel()
+    {
+        $("#pop_up_bg").hide();
+        $("#pop_up_content").hide();
+    }
+    function search(id, obj) {
+        $(obj).siblings().removeClass("active");
+        $(obj).addClass("active");
+        var ids = $("#lvl2").find("li[class=active]").attr("title");
+        location.href = "/Video/VideoList/" + 1 + "/" + ids;
+    }
+    $(document).ready(function () {
+        $("#lvl2").find("li").each(function () {
+
+            if ('@ViewBag.ids' == $(this).attr("title")) {
+                  $(this).addClass("active");
+              }
+
+          });
+    });
+</script>

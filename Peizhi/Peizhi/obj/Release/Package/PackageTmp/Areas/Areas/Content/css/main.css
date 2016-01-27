@@ -1,0 +1,1145 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*index*/
+.index .exam-center,
+.index .latest-news,
+.index .lesson-center {
+  /*margin-top: 4%;*/
+  padding: 2%;
+  width: 96%;
+}
+
+/*微课中心*/
+.index .title {
+  width: 100%;
+  height: 24px;
+}
+.index .title .h5 {
+  float: left;
+  margin-left: 5px;
+  padding-left: 7px;
+  width: 100px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 18px;
+  color: #02bc7e;
+  border-left: 3px solid #02bc7e;
+}
+.index .btn_more {
+  float: right;
+  width: 72px;
+  height: 24px;
+  line-height: 24px;
+  color: #02bc7e;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+/*课程内容*/
+.index .exam-center .content {
+  overflow: hidden;
+  margin-top: 2%;
+  width: 100%;
+}
+.index .exam-center .content li {
+  float: left;
+  width: 49%;
+  text-align: center;
+}
+.index .exam-center .content li:nth-child(even) {
+  float: right;
+}
+.index .exam-center .content li .div1 {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+}
+.index .exam-center .content li .div1 span {
+  overflow: hidden;
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  font-size: 1em;
+}
+.index .exam-center .content li .div1 a {
+  float: right;
+  margin: 5px 0;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 0.8em;
+  color: #fff;
+  text-align: center;
+  background-color: #02bc7e;
+  border-radius: 2px;
+}
+
+/*最新动态*/
+.index .latest-news .news-lists {margin-top: 2%;}
+.index .latest-news .news-lists li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.index .latest-news .news-lists li:last-child {border-bottom: none;}
+.index .latest-news .news-lists li .p1 {
+  overflow: hidden;
+  float: left;
+  width: 76%;
+  height: 30px;
+}
+.index .latest-news .news-lists li .p2 {
+  float: right;
+  height: 30px;
+}
+
+/*考试中心*/
+.index .lesson-center .lesson-lists {margin-top: 2%;}
+.index .lesson-center .lesson-lists li {
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.index .lesson-center .lesson-lists li:last-child {border-bottom: none;} 
+/*index END*/
+
+/*登陆*/
+.login-header {padding: 4% 0;}
+.login-header .logo-img {
+  margin: 0 auto;
+  width: 80%;
+  height: 60px;
+  text-align: center;
+}
+.login-header .logo-img img {
+  width: auto;
+  height: 60px;
+}
+
+.login-form {
+  margin: 4% auto;
+  padding: 2%;
+}
+.login-form .title {
+  margin-bottom: 4%;
+  width: 100%;
+  line-height: 40px;
+  font-size: 1.4em;
+  color: #999;
+  text-align: center;
+}
+.login-form .ipt-text {
+  position: relative;
+  margin-bottom: 4%;
+}
+.login-form .ipt-text input {
+  padding: 0 2%;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.login-form .ipt-text span {
+  font-size: 12px;
+}
+
+.login-form .btn-login {
+  margin-bottom: 4%;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #02bc7e;
+  border: none;
+  border-radius: 3px;
+}
+
+.login-form .regist-group {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.login-form .regist-group a {
+  float: left;
+  color: #02bc7e;
+}
+.login-form .regist-group a.a2 {float: right;}
+
+/*找回密码*/
+.login-form .ipt-text .btn-send-code {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 2;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  background-color: #02bc7e;
+  border-radius: 3px;
+}
+/*登录 END*/
+
+/*密码重置成功*/
+.password-reset {
+  padding: 2%;
+  margin: 4% auto;
+}
+.password-reset .success {
+  margin: 20% 0;
+  width: 100%;
+  line-height: 40px;
+  font-size: 1.4em;
+  color: #999;
+  text-align: center;
+}
+.password-reset .btn-login-now {
+  margin-bottom: 4%;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  background-color: #02bc7e;
+  border: none;
+  border-radius: 3px;
+}
+/*密码重置成功 END*/
+
+/*个人中心*/
+.personal-center {width: 100%;}
+.personal-center .title {
+  padding: 2%;
+  width: 96%;
+  line-height: 40px;
+  font-size: 1.4em;
+}
+.personal-center .user-name {
+  padding: 2%;
+  width: 96%;
+  font-size: 1.2em;
+  color: #999;
+}
+
+.personal-center .menu {
+  overflow: hidden;
+  margin: 4% 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+.personal-center .menu li {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.personal-center .menu li a {
+  padding: 5px 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  background: url(../images/x_icon_next.png) no-repeat 98% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+.personal-center .menu li.li3 a {background: none;} 
+
+/*通用头部*/
+.personal-center .person-head {
+  overflow: hidden;
+  padding: 2%;
+  width: 96%;
+  background: #02bc7e url(../images/icon_personal_setting.png) no-repeat 98% center;
+  -webkit-background-size: auto 30px;
+          background-size: auto 30px;
+}
+.personal-center .person-head .head-img {
+  float: left;
+  width: 60px;
+  height: 60px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+.personal-center .person-head .head-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.personal-center .person-head .name {
+  float: left;
+  margin-left: 10px;
+  line-height: 60px;
+  font-size: 1.2em;
+  color: #fff;
+}
+.personal-center .mt0 {margin-top: 0;}
+
+/*我的考试*/
+.tab-ul {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-ul li a {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.tab-ul li.active a {
+  border-bottom: 3px solid #02bc7e;
+}
+.tab-ul li a span {color: #f10;}
+
+#exam-ul li {
+  float: left;
+  width: 50%;
+}
+
+.tab-ol {margin-bottom: 4%;}
+.tab-ol li {
+  overflow: hidden;
+  display: none;
+  width: 100%;
+} 
+.tab-ol li:first-child {display: block;} 
+.tab-ol li .exam-papers {
+  padding: 2%;
+  width: 96%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd; 
+}
+#exam-ol li .exam-name {
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
+  -webkit-text-overflow:ellipsis;
+          text-overflow:ellipsis;
+  white-space: nowrap;
+}
+#exam-ol li .exam-score {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+}
+#exam-ol li .exam-score span {color: #f10;}
+
+/*我的课程*/
+#exam-ol li .lessons {
+  overflow: hidden;
+  padding: 2%;
+  width: 96%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+#exam-ol li .swipe-collect {
+  position: relative;
+  float: left;
+  width: 100%;
+  -webkit-transition: all 0.3s linear;
+}
+#exam-ol li .selected {-webkit-transform: translate(-80px,0);}
+#exam-ol li .swipe-collect .swipe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 60%;
+  height: 100%;
+}
+#exam-ol li .btn-backspace{
+  position: absolute;
+  right: -80px;
+  top: 0;
+  display: block;
+  padding: 2% 0;
+  width: 80px;
+  height: 80px;
+  background: #ddd url(../images/icon_delete_1.png) no-repeat center;
+  -webkit-background-size: 20px auto;
+          background-size: 20px auto;
+  -webkit-transition: all 0.3s linear;
+}
+
+#exam-ol li .lessons .img {
+  float: left;
+  margin-right: 2%;
+  width: 107px;
+  height: 66px;
+  text-align: center;
+  background-color: #ddd;
+}
+#exam-ol li .lessons .img img {
+  width: 100%;
+  height: 100%;
+}
+#exam-ol li .lessons .right-content {
+  float: left;
+  width: 63%;
+  height: 66px;
+}
+#exam-ol li .lessons .right-content .h4 {
+  overflow: hidden;
+  width: 100%;
+  height: 22px;
+  line-height: 22px;
+  font-size: 1.2em;
+  color: #333;
+  -webkit-text-overflow:ellipsis;
+          text-overflow:ellipsis;
+  white-space: nowrap;
+}
+#exam-ol li .lessons .right-content .content {
+  overflow: hidden;
+  margin-top: 4px;
+  width: 100%;
+  height: 40px;
+  line-height: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  /*超出2行显示省略号*/
+}
+/*个人中心 END*/
+
+/*考试中心*/
+
+/*交卷*/
+.exam-regulat {
+  padding: 2%;
+  width: 96%;
+  color: #fff;
+  background-color: #02bc7e;
+}
+.exam-regulat .exam-name {
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 24px;
+}
+.exam-regulat .exam-info {
+  width: 100%;
+  line-height: 24px;
+}
+
+.carry-out .exam-questions .fraction {
+  padding: 2%;
+}
+.carry-out .exam-questions .fraction p {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1.2em;
+}
+.carry-out .exam-questions .fraction p span {color: #ec0101;}
+
+.carry-out .exam-questions .subjective {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  background: url(../images/x_icon_next.png) no-repeat 98% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.carry-out .exam-questions .objective .div1 {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+}
+
+.carry-out .exam-questions .objective .question-one .question-name {
+  padding: 0 2%;
+  width: 96%;
+  line-height: 24px;
+  font-size: 1.2em;
+}
+.carry-out .exam-questions .objective .question-one .you-answer {
+  padding: 2%;
+  width: 96%;
+  line-height: 20px;
+  color: #31ce99;
+}
+
+.carry-out .exam-questions .objective .question-one .bd {
+  margin: 2% 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.carry-out .exam-questions .objective .question-one .reference-answer {
+  padding: 2%;
+  width: 96%;
+  line-height: 20px;
+  color: #e70000;
+}
+
+/*评分*/
+.carry-out .exam-questions .objective .question-one .rate {
+  margin: 0 auto;
+  margin-bottom: 4%;
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.carry-out .exam-questions .objective .question-one .rate input {
+  padding: 0 2%;
+  width: 16%;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+/*交卷END*/
+
+/*考试*/
+.multiple-choice {background-color: #fff;}
+
+/*选择题*/
+.multiple-choice .topic-name {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  color: #999;
+}
+.multiple-choice .topic {
+  padding: 2%;
+  width: 96%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.multiple-choice .topic p.p1 {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1.2em;
+}
+.multiple-choice .topic p.pa {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1.2em;
+  color: #999;
+}
+.multiple-choice .topic ul {
+  padding: 2% 0;
+  width: 100%;
+  height: 40px;
+}
+.multiple-choice .topic ul li {
+  float: left;
+  margin-right: 2%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.multiple-choice .topic ul li a {color: #999;}
+.multiple-choice .topic ul li.active {
+  background-color: #02bc7e;
+  border: none;
+}
+.multiple-choice .topic ul li.active a {color: #fff;}
+.multiple-choice .topic ul li.wrong {
+  background-color: #e50318;
+  border: none;
+}
+.multiple-choice .topic ul li.wrong a {color: #fff;}
+
+.multiple-choice .topic ul a.next {
+  float: right;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*底部*/
+.exam-foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #666;
+}
+.exam-foot .exam-time {
+  margin: 10px auto;
+  width: 96%;
+  height: 30px;
+  line-height: 30px;
+}
+.exam-foot .exam-time a {
+  float: left;
+  margin-right: 3.33%;
+  padding-left: 30px;
+  width: 30%;
+  height: 30px;
+  color: #02bc7e;
+  text-align: center;
+  border: 1px solid #02bc7e;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.exam-foot .exam-time .li1 {
+  color: #02bc7e;
+  background: url(../images/icon_exam_time.png) no-repeat 10% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+/*暂停*/
+.exam-foot .exam-time .pause {
+  background: url(../images/icon_exam_pause.png) no-repeat 30% center;
+  -webkit-background-size: auto 15px;
+          background-size: auto 15px;
+}
+/*播放*/
+.exam-foot .exam-time .play {
+  background: url(../images/icon_exam_play.png) no-repeat 30% center;
+  -webkit-background-size: auto 15px;
+          background-size: auto 15px;
+}
+.exam-foot .exam-time .li3 {
+  float: left;
+  padding-left: 30px;
+  width: 30%;
+  height: 30px;
+  color: #fff;
+  text-align: center;
+  background: #02bc7e url(../images/icon_exam_send.png) no-repeat 30% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+  border: none;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*问答题*/
+.multiple-choice .topic .questions-answers {
+  margin: 10px 0;
+  padding: 5px;
+  width: 100%;
+  height: 100px;
+  font-size: 1.2em;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*考试 END*/
+
+/*中心*/
+.kaoshi-center {
+  overflow: hidden;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+.kaoshi-center li {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.kaoshi-center li a {
+  padding: 5px 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  background: url(../images/x_icon_next.png) no-repeat 98% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+
+/*考试列表*/
+
+/*左侧导航*/
+#tab-ul-1 {
+  float: left;
+  width: 25%;
+  background: #f5f5f5;
+}
+#tab-ul-1 li a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  border-left: 2px solid #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#tab-ul-1 li.active a {
+  color: #02bc7e;
+  background-color: #fff;
+  border-left: 2px solid #02bc7e;
+}
+/*右边内容*/
+#tab-ol-1 {
+  float: left;
+  width: 75%;
+  background-color: #fff;
+}
+#tab-ol-1 li {display: none;}
+#tab-ol-1 li:first-child {display: block;} 
+
+#tab-ol-1 .list {
+  padding: 2%;
+  width: 96%;
+  border-bottom: 1px solid #ddd;
+}
+#tab-ol-1 .list p.p1 {
+  overflow: hidden;
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 30px;
+  white-space:nowrap;
+  -webkit-text-overflow:ellipsis;
+          text-overflow:ellipsis;
+}
+#tab-ol-1 .list p.p2 {
+  width: 100%;
+  line-height: 24px;
+  color: #999;
+} 
+
+/*练习*/
+.multiple-choice .topic .correct-answer {
+  padding: 2% 0;
+  border-top: 1px solid #ddd;
+}
+.multiple-choice .topic .correct-answer .p1 {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.2em;
+}
+/*正确*/
+.multiple-choice .topic .correct-answer .correct {color: #02bc7e;}
+/*错误*/
+.multiple-choice .topic .correct-answer .mistake {color: #e50318;}
+.multiple-choice .topic .correct-answer .p2 {
+  width: 100%;
+  line-height: 24px;
+  font-size: 1.2em;
+  color: #999;
+}
+
+.exam-foot .btn-end-exercises {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.2em;
+  color: #fff;
+  text-align: center;
+  background-color: #02bc7e;
+  border: none;
+  border-radius: 3px;
+}
+
+/*考试中心 END*/
+
+/*认证中心*/
+#tab-ul-2 {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+#tab-ul-2 li {
+  float: left;
+  width: 25%;
+}
+#tab-ul-2 li a {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.1em;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#tab-ul-2 li.active a {
+  border-bottom: 3px solid #02bc7e;
+}
+
+#tab-ol-2 li {display: none;}
+#tab-ol-2 li:first-child {display: block;}
+#tab-ol-2 li .certif-lists {
+  padding: 2%;
+  background-color: #fff;
+}
+#tab-ol-2 li .certif-lists img {
+  margin: 2% 0;
+  width: 100%;
+}
+#tab-ol-2 li .certif-lists p {
+  font-size: 1.1em;
+  line-height: 24px;
+}
+/*认证中心 END*/
+
+/*微课中心*/
+#tab-ol-1 .teaches-li {
+  padding: 2%;
+  padding-top: 0;
+  width: 96%;
+}
+#tab-ol-1 .primary-school {
+  float: left;
+  margin: 2% 2% 0 0;
+  width: 48%;
+}
+#tab-ol-1 .primary-school img {
+  width: 100%;
+}
+#tab-ol-1 .primary-school p {
+  overflow: hidden;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+}
+
+/*微课详情*/
+
+.course-details .top-title {
+  padding: 0 2%;
+  width: 96%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+}
+.course-details .course-img {
+  display: block;
+  margin: 0 auto;
+}
+.course-details .course-price {
+  padding: 2%;
+  width: 96%;
+  background-color: #fafafa;
+}
+.course-details .course-price .div1 {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.1em;
+  color: #ed0202;
+}
+.course-details .course-price .div2 strong span {color: #999;}
+
+.course-details .course-lesson-lists {padding: 2%;}
+.course-details .course-lesson-lists .lesson-lists-title {
+  margin: 5px 0;
+  padding-left: 7px;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 1.2em;
+  color: #02bc7e;
+  border-left: 3px solid #02bc7e;
+}
+.course-details .course-lesson-lists ul li {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  font-size: 1em;
+}
+.course-details .course-lesson-lists .lesson-lists-content {
+  padding: 2% 0;
+  line-height: 24px;
+  font-size: 1em;
+}
+/*底部*/
+.course-foot .exam-time .li1 {
+  color: #02bc7e;
+  background: url(../images/icon_course_details_foot_1.png) no-repeat 30% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+.course-foot .exam-time .li2 {
+  color: #02bc7e;
+  background: url(../images/icon_course_details_foot_2.png) no-repeat 30% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+.course-foot .exam-time .li3 {
+  color: #fff;
+  background: #02bc7e url(../images/icon_course_details_foot_3.png) no-repeat 30% center;
+  -webkit-background-size: auto 20px;
+          background-size: auto 20px;
+}
+
+/*评论*/
+.course-details .course-lesson-comment {padding: 2%;}
+.course-details .course-lesson-comment .lesson-comment-title {
+  margin: 5px 0;
+  padding-left: 7px;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 1.2em;
+  color: #02bc7e;
+  border-left: 3px solid #02bc7e;
+}
+.course-details .course-lesson-comment ul li {
+  padding: 2% 0;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+.course-details .course-lesson-comment ul li .div1 {
+  overflow: hidden;
+  width: 100%;
+  color: #999;
+}
+.course-details .course-lesson-comment ul li .div1 .p1 {
+  overflow: hidden;
+  float: left;
+  width: 58%;
+  height: 30px;
+  line-height: 30px;
+}
+.course-details .course-lesson-comment ul li .div1 .p1 .img {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+.course-details .course-lesson-comment ul li .div1 .p1 .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.course-details .course-lesson-comment ul li .div1 .p1 .user-info {
+  float: left;
+  margin-left: 5px;
+}
+
+.course-details .course-lesson-comment ul li .div1 .p2 {
+  float: right;
+  width: 42%;
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+}
+
+.course-details .course-lesson-comment ul li .div2 {
+  padding-left: 35px;
+  width: 100%;
+  line-height: 24px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*发表评论*/
+.course-details .course-lesson-comment .comment-form {
+  margin: 2% 0;
+  width: 100%;
+}
+.course-details .course-lesson-comment .comment-form textarea {
+  padding: 5px;
+  width: 100%;
+  height: 60px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.course-details .course-lesson-comment .comment-form .btn-issue {
+  display: block;
+  margin: 2% auto;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.1em;
+  color: #02bc7e;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #02bc7e;
+  border-radius: 3px;
+}
+
+/*微课视频*/
+.course-videos {padding: 2%;}
+.course-videos .collect-title {
+  width: 100%;
+  height: 40px;
+}
+.course-videos .collect-title .title {
+  float: left;
+  line-height: 40px;
+  font-size: 1.2em;
+}
+.course-videos .collect-title .collect {
+  float: right;
+  padding-left: 20px;
+  line-height: 40px;
+  color: #02bc7e;
+  background: url(../images/icon_lesson_collect.png) no-repeat left center;
+  -webkit-background-size: auto 15px;
+          background-size: auto 15px;
+}
+/*已收藏*/
+.course-videos .collect-title .collected {
+  float: right;
+  padding-left: 20px;
+  line-height: 40px;
+  color: #02bc7e;
+  background: url(../images/icon_lesson_collected.png) no-repeat left center;
+  -webkit-background-size: auto 15px;
+          background-size: auto 15px;
+}
+
+/*课程列表*/
+.course-videos .videos-list .videos-title {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2em;
+  color: #02bc7e;
+}
+.course-videos .videos-list .videos-ul li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.course-videos .videos-list .videos-ul li.active {background-color: #fafafa;}
+.course-videos .videos-list .videos-ul li.active a {color: #02bc7e;}
+
+.course-videos .videos-list ol li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+
+/*微课中心 END*/
+
+/*新闻资讯*/
+
+/*新闻详情*/
+.pei-news-detail .title {
+  padding: 2%;
+  width: 96%;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+.pei-news-detail .title .div1 {
+  padding: 5px 0;
+  width: 100%;
+  line-height: 24px;
+  font-size: 1.2em;
+}
+.pei-news-detail .title .div2 {
+  width: 100%;
+  line-height: 24px;
+  color: #999;
+} 
+
+.pei-news-detail .certif-lists {
+  padding: 2%;
+  background-color: #fff;
+}
+.pei-news-detail .certif-lists img {
+  margin: 2% 0;
+  width: 100%;
+}
+.pei-news-detail .certif-lists p {
+  font-size: 1.1em;
+  line-height: 24px;
+}
+
+.pei-news-detail .next-news {
+  padding: 2%;
+  border-top: 1px solid #ddd;
+}
+.pei-news-detail .next-news a {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1em;
+}
+/*新闻资讯 END*/
+
+/*资料下载*/
+#tab-ol-1 .download-list {
+  padding: 2%;
+  width: 96%;
+  border-bottom: 1px solid #ddd;
+}
+#tab-ol-1 .download-list dt {
+  width: 100%;
+  line-height: 20px;
+}
+#tab-ol-1 .download-list .btn-download {
+  width: 100%;
+  text-align: right;
+}
+#tab-ol-1 .download-list .btn-download input {
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #02bc7e;
+  border: none;
+  border-radius: 3px;
+}
+/*资料下载 END*/
+
+/*关于我们*/
+/*#tab-ol-2 li .certif-lists p span {color: #999;}*/
+/*关于我们 END*/

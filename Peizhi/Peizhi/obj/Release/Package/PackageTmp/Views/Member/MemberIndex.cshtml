@@ -1,0 +1,135 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<style type="text/css">
+	</style>
+<!--网页左上角小图标-->
+<link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人中心</title>
+<!--js-->
+<script type="text/javascript" src="/Content/js/Rich_Lee.js"></script>
+<script type="text/javascript" src="/Content/js/rich_one.js"></script>
+<script type="text/javascript" src="/Content/js/Html5shiv.js"></script>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="/Content/css/common.css">
+<link rel="stylesheet" type="text/css" href="/Content/css/rich_one.css">
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        changes_click('.person_right dt span', '.person_right dd', 'sty', 'onclick');//切换基本资料，修改密码
+    };
+</script>
+<body class="bgc_fa">
+
+  <!-- 顶部 -->
+  <div class="index_header">
+    <div class="header">
+      <a class="logo" href="/Home/Index">
+        <!-- logo尺寸 410*90 -->
+        <img src="/Content/images/index_logo.png" alt="培知教育" />
+      </a>
+      <!--<div class="ask_login">
+        已有易考网账户？ <a href="登录.html">立即登录</a>
+      </div>-->
+    </div>
+  </div>
+  <!-- 顶部 END -->
+  <div style="border-top: #DDDDDD 1px solid;width: 100%;height: 10px;"></div>
+	<section class="person">
+		<dl class="person_left">
+			<dt><a href="/member/memberset">
+				<div>
+					<img src="/Content/UploadFiles/images/@ViewBag.image" alt="培知教育"/>
+				</div>
+				<p>不认识小幂幂</p>
+				<label>设置</label>
+                </a>
+			</dt>
+			
+			<dd><a href="/member/memberexam">我的考试</a></dd>
+			
+		</dl>
+		<dl class="person_right">
+			<dt>
+				<label>我的考试</label>
+				<span>历史记录</span>
+				
+			</dt>
+			<dd>
+				<section class="apply_box">
+					<div class="apply_left">
+						<img src="/Content/images/r_person_subject.png" alt="培知教育"/>
+					</div>
+					<div class="apply_right">
+						<h3>高一全科全年套餐</h3>
+						<div>
+							<a href="#" class="a1">学习</a>
+							<a href="#" class="a2">删除</a>
+						</div>
+						<p>升到高一了，新环境、新课程，怎样有一个全新的开端？能不能凭借初中的学习技巧，应对高中的学习挑战？本套餐根据各学科特点，囊括高一年级全年全科精品课，为高一学生量身打造全年学习方案... <a href="#">[详细]</a></p>
+					</div>
+				</section>
+				<section class="apply_box">
+					<div class="apply_left">
+						<img src="/Content/images/r_person_subject.png" alt="培知教育"/>
+					</div>
+					<div class="apply_right">
+						<h3>高一全科全年套餐</h3>
+						<div>
+							<a href="#" class="a1">学习</a>
+							<a href="#" class="a2">删除</a>
+						</div>
+						<p>升到高一了，新环境、新课程，怎样有一个全新的开端？能不能凭借初中的学习技巧，应对高中的学习挑战？本套餐根据各学科特点，囊括高一年级全年全科精品课，为高一学生量身打造全年学习方案... <a href="#">[详细]</a></p>
+					</div>
+				</section>	
+				<section class="apply_box">
+					<div class="apply_left">
+						<img src="/Content/images/r_person_subject.png" alt="培知教育"/>
+					</div>
+					<div class="apply_right">
+						<h3>高一全科全年套餐</h3>
+						<div>
+							<a href="#" class="a1">学习</a>
+							<a href="#" class="a2">删除</a>
+						</div>
+						<p>升到高一了，新环境、新课程，怎样有一个全新的开端？能不能凭借初中的学习技巧，应对高中的学习挑战？本套餐根据各学科特点，囊括高一年级全年全科精品课，为高一学生量身打造全年学习方案... <a href="#">[详细]</a></p>
+					</div>
+				</section>	
+				<section class="apply_box">
+					<div class="apply_left">
+						<img src="/Content/images/r_person_subject.png" alt="培知教育"/>
+					</div>
+					<div class="apply_right">
+						<h3>高一全科全年套餐</h3>
+						<div>
+							<a href="#" class="a1">学习</a>
+							<a href="#" class="a2">删除</a>
+						</div>
+						<p>升到高一了，新环境、新课程，怎样有一个全新的开端？能不能凭借初中的学习技巧，应对高中的学习挑战？本套餐根据各学科特点，囊括高一年级全年全科精品课，为高一学生量身打造全年学习方案... <a href="#">[详细]</a></p>
+					</div>
+				</section>	
+			</dd>
+			
+		</dl>
+	</section>
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 底部 -->
+     @{
+     Html.RenderAction("Foot", "Base");
+         }
+  <!-- 底部 END -->
+</body>
+</html>

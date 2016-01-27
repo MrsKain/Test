@@ -1,0 +1,169 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <style type="text/css">
+	</style>
+    <!--网页左上角小图标-->
+    <link rel="shortcut icon" href="/Content/images/icon_logo.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>个人中心</title>
+    <!--js-->
+    <script type="text/javascript" src="/Content/js/Rich_Lee.js"></script>
+   
+    <script type="text/javascript" src="/Content/js/Html5shiv.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="/Content/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/rich_one.css"/>
+    <style type="text/css">
+        .explain_type01 .anse{
+	line-height: 30px;
+	margin-top: 30px;
+	height: 270px;
+}
+        .ansea {
+	display: inline-block;
+	color: #666;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+    </style>
+</head>
+
+<body class="bgc_fa">
+
+    <!-- 顶部 -->
+    <div class="index_header">
+        <div class="header">
+            <a class="logo" href="/Home/Index">
+                <!-- logo尺寸 410*90 -->
+                <img src="/Content/images/index_logo.png" alt="培知教育" />
+            </a>
+          
+        </div>
+    </div>
+    <!-- 顶部 END -->
+    <div style="border-top: #DDDDDD 1px solid; width: 100%; height: 10px;"></div>
+    <section class="person">
+		<dl class="person_left">
+			<dt><a href="/member/memberset">
+				<div>
+					<img src="/Content/UploadFiles/images/@ViewBag.image" alt="培知教育"/>
+				</div>
+				<p>@ViewBag.bank</p>
+				<label>设置</label>
+                </a>
+			</dt>
+			
+			<dd><a href="/member/memberexam">我的考试</a></dd>
+			<dd><a href="/member/memberwrong">错题库</a></dd>
+		</dl>
+		<dl class="person_right">
+			<dt>
+				<label>错题库</label>
+
+			</dt>
+			<dd style="display:block;">
+				
+				
+			<div class="rexamp_right">
+			
+            @{
+                DataTable dt = ViewBag.table as DataTable;
+                foreach(DataRow dr in dt.Rows)
+                {
+                <ul class="explain_type01">
+				<li class="li05">
+					<p class="main">
+						1.@dr["Question"].ToString()（）
+					</p>
+					<div>
+						<span>A. @dr["A"].ToString() </span><br/>
+						<span>B. @dr["B"].ToString() </span><br/>
+						<span>C. @dr["C"].ToString()</span><br/>
+						<span>D. @dr["D"].ToString()</span>
+					</div> 
+				</li>
+				<li class="li06">
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>A</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>B</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>C</label>
+					</span>
+					<span onclick="answer()">
+						<img class="wrong" src="/Content/images/r_examp_wrong.png"/>
+						<img class="right" src="/Content/images/r_examp_choice.png"/>
+						<label>D</label>
+					</span>
+				</li>
+				<li class="li07" style="border-top:none;" >
+					<label class="yes">正确 @dr["Answer"].ToString()</label>
+					<p>解析：@dr["Analysis"].ToString()</p>
+					<a href="###"  onclick="Delets('@dr["id"].ToString()')">删除</a>
+				</li>				
+			</ul>
+                }
+                
+                }
+		</div>
+				
+				
+				
+			</dd>
+			<dd>
+			
+			</dd>
+		</dl>
+	</section>
+
+
+
+
+
+
+
+
+    <!-- 底部 -->
+    @{
+        Html.RenderAction("Foot", "Base");
+    }
+    <!-- 底部 END -->
+</body>
+</html>
+<script src="/Content/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function Delets(id) {
+        $.ajax({
+            type: "post",
+            url: "/Member/DeletesWrong",
+            data: { id: id },
+            success: function (IsSuccess) {
+                if (IsSuccess == "0") {
+                    location.href = "/Member/MemberWrong";
+                }
+                else {
+                    alert("删除失败！");
+                }
+
+
+            }
+
+        });
+    }
+
+</script>
